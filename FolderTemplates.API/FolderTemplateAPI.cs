@@ -84,14 +84,28 @@ namespace FolderTemplates.API
         private static void ProcessFile(string sourceFile, string targetFile, ReplaceParameter[] replaceList)
         {
             // Copy entire text file, replacing any tokens found
-            string template = File.ReadAllText(sourceFile);
+            // NOTE: This reads the entire file into memory, so will only work well with small-ish files
+            // TODO: Can we use streams to both copy and transform the file?
+            // TODO: If not, perhaps there should be an upper limit on file size ?
+            // TODO: We should also make sure this is a text file as we can't replace tokens in binary files.
+
+            // Read the entire source file
+            string fileContents = File.ReadAllText(sourceFile);
+
+            // Use regex to identify all tokens in the form {{$tokenName}} in the file and replace them
+            // with the matching template values
             string replaced =
-                FindTokens().Replace(template, 
+                FindTokens().Replace(fileContents, 
                     match =>
                     {
+                        // Find the matching FileContentToken string in the replaceList
                         var found = replaceList.FirstOrDefault((p) => p != null && p.FileContentToken == match.Groups[1].Value, null);
+                        // If we found a replacement value, return it, otherwise, return
+                        // the entire token to pass it through invisibly
                         return found != null ? found.Value : match.Value;
                     });
+
+            // Write the entire target file with the result
             File.WriteAllText(targetFile, replaced);
         }
 
@@ -108,9 +122,11 @@ namespace FolderTemplates.API
                 if (Regex.IsMatch(source.Name, skip)) return;
             }
 
+            // Split the directory and file info into separate variables
             string? targetPath = Path.GetDirectoryName(target.FullName);
             string targetFolderName = target.Name;
 
+            // Create the target path string by replacing template variables
             string replacedTargetPath = Path.Combine(targetPath ?? "", ProcessName(targetFolderName, replaceList));
 
             // Replace variable names in the target folder name
@@ -119,20 +135,25 @@ namespace FolderTemplates.API
             // Create the new target folder
             if (!replacedTarget.Exists) replacedTarget.Create();
 
+            // Recursively process all subfolders
             Parallel.ForEach(source.GetDirectories(), (sourceChildDirectory) =>
                 CopyEntireDirectory(
                     sourceChildDirectory, 
                     new DirectoryInfo(Path.Combine(replacedTarget.FullName, sourceChildDirectory.Name)), 
                     skipList, replaceList, overwiteFiles));
 
+            // Process each file in the folder
             Parallel.ForEach(source.GetFiles(), sourceFile =>
             {
                 string targetFileName = Path.Combine(replacedTarget.FullName, ProcessName(sourceFile.Name, replaceList));
 
+                // If the file has an .ft$ extension, do a find-and-replace in the contents
+                // TODO: Should the file extension .ft$ be configurable?
                 if (Path.GetExtension(sourceFile.FullName).ToLower() == ".ft$") {
                     string targetFilenameFixed = Path.Combine(Path.GetDirectoryName(targetFileName) ?? "", Path.GetFileNameWithoutExtension(targetFileName));
                     ProcessFile(sourceFile.FullName, targetFilenameFixed, replaceList);
                 }
+                // Otherwise, just copy the file without attempting find-and-replace
                 else {
                     sourceFile.CopyTo(targetFileName, overwiteFiles);
                 }

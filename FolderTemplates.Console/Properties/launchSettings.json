@@ -6,7 +6,7 @@
     },
     "Console - w / Variable Parameters": {
       "commandName": "Project",
-      "commandLineArgs": "-sourceFolder \"D:\\Folder Templates\\Test Files\\_Basic Template - {projectName} - {projectVersion}\" -projectName \"Project XXX\" -projectVersion \"vXXX\""
+      "commandLineArgs": "-sourceFolder \"D:\\Folder Templates\\Test Files\\_Basic Template - {projectName} - {projectVersion}\" -targetFolder \"D:\\Folder Templates\\Test Results\" -projectName \"Project XXX\" -projectVersion \"vXXX\""
     },
     "Console - w / Target Folder": {
       "commandName": "Project",
