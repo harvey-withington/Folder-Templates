@@ -12,6 +12,7 @@
         private readonly bool _required = false;
         private readonly string _helpMessage = "";
         private bool _exists = false;
+        private bool _registered = false;
 
         /// <summary>
         /// Creates a new instance of this class.
@@ -42,6 +43,11 @@
             _exists = false;
         }
 
+        internal void SetRegistered(bool v)
+        {
+            _registered = v;
+        }
+
         /// <summary>
         /// Returns the value of the parameter.
         /// </summary>
@@ -64,6 +70,14 @@
         public bool Exists
         {
             get { return _exists; }
+        }
+
+        /// <summary>
+        /// Returns true if the parameter was registered.
+        /// </summary>
+        public bool Registered
+        {
+            get { return _registered; }
         }
 
         /// <summary>

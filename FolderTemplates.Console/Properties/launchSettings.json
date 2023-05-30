@@ -4,13 +4,17 @@
       "commandName": "WSL2",
       "distributionName": ""
     },
-    "Folder Templates Console - No Target Folder": {
+    "Console - w / Variable Parameters": {
       "commandName": "Project",
-      "commandLineArgs": "-sourceFolder \"D:\\Folder Templates\\Test Files\\_Basic Template - {projectName} - {projectVersion}\""
+      "commandLineArgs": "-sourceFolder \"D:\\Folder Templates\\Test Files\\_Basic Template - {projectName} - {projectVersion}\" -projectName \"Project XXX\" -projectVersion \"vXXX\""
     },
-    "Folder Templates Console - w / Target Folder": {
+    "Console - w / Target Folder": {
       "commandName": "Project",
       "commandLineArgs": "-sourceFolder \"D:\\Folder Templates\\Test Files\\_Basic Template - {projectName} - {projectVersion}\" -targetFolder \"D:\\Folder Templates\\Test Results\""
+    },
+    "Console - No Target Folder": {
+      "commandName": "Project",
+      "commandLineArgs": "-sourceFolder \"D:\\Folder Templates\\Test Files\\_Basic Template - {projectName} - {projectVersion}\""
     }
   }
 }

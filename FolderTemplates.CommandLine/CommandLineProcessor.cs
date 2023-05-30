@@ -53,6 +53,8 @@ namespace FolderTemplates.CommandLine
         {
             if (parameters.ContainsKey(parameter.Name))
                 throw new CommandLineException(parameter.Name, "Parameter is already registered.");
+
+            parameter.SetRegistered(true);
             parameters.Add(parameter.Name, parameter);
         }
 
@@ -115,6 +117,10 @@ namespace FolderTemplates.CommandLine
                         if (parameters[key].Exists)
                             throw new CommandLineException(key, "Parameter is specified more than once.");
 
+                        parameters[key].SetValue(value);
+                    } else if(allowUnspecified)
+                    {
+                        parameters.Add(key, new CommandLineParameter(key, false, ""));
                         parameters[key].SetValue(value);
                     }
                 }
