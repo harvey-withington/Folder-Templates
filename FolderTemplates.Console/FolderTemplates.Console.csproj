@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <RootNamespace>FolderTemplates.ConsoleApp</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Test Files\**" />
+    <Compile Remove="Test Results\**" />
+    <EmbeddedResource Remove="Test Files\**" />
+    <EmbeddedResource Remove="Test Results\**" />
+    <None Remove="Test Files\**" />
+    <None Remove="Test Results\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FolderTemplates.API\FolderTemplates.API.csproj" />
+    <ProjectReference Include="..\FolderTemplates.CommandLine\FolderTemplates.CommandLine.csproj" />
+  </ItemGroup>
+
+</Project>

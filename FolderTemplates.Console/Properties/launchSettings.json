@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
+    },
+    "Folder Templates Console - No Target Folder": {
+      "commandName": "Project",
+      "commandLineArgs": "-sourceFolder \"D:\\Folder Templates\\Test Files\\_Basic Template - {projectName} - {projectVersion}\""
+    },
+    "Folder Templates Console - w / Target Folder": {
+      "commandName": "Project",
+      "commandLineArgs": "-sourceFolder \"D:\\Folder Templates\\Test Files\\_Basic Template - {projectName} - {projectVersion}\" -targetFolder \"D:\\Folder Templates\\Test Results\""
+    }
+  }
+}
