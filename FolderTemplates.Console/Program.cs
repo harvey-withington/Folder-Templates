@@ -28,6 +28,8 @@ namespace FolderTemplates.ConsoleApp
             // Load the template file
             Template template = FolderTemplateAPI.Load(templateFile);
 
+            // TODO:    Need a way to specify the incoming parameters
+            //          either via input file, or parameters
             //template.Parameters[0].Value = "overridden project name";
             //template.Parameters[1].Value = "overridden project version";
 
