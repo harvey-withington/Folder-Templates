@@ -7,18 +7,20 @@
     /// </summary>
     public class ConsoleCommandLine : CommandLineProcessor
     {
+        private bool parsedSuccessfully = false;
+        public bool ParsedSuccessfully { get => parsedSuccessfully; set => parsedSuccessfully = value; }
         public ConsoleCommandLine()
         {
             base.RegisterParameter(new CommandLineString("help", false, "Prints the help screen."));
         }
 
-        public new string[]? Parse(string[] args, bool allowUnspecified)
+        public new string[]? Parse(string[] args, bool allowUnspecified, string? defaultUnspecifiedFlag = null)
         {
             string[]? ret = null;
             string error = "";
             try
             {
-                ret = base.Parse(args, allowUnspecified);
+                ret = base.Parse(args, allowUnspecified, defaultUnspecifiedFlag);
             }
             catch (CommandLineException ex)
             {
@@ -28,14 +30,16 @@
             if (this["help"].Exists)
             {
                 Console.WriteLine(base.HelpScreen());
-                System.Environment.Exit(0);
             }
 
             if (error != "")
             {
                 Console.WriteLine(error);
                 Console.WriteLine("Use -help for more information.");
-                System.Environment.Exit(1);
+                parsedSuccessfully = false;
+            } else
+            {
+                parsedSuccessfully = true;
             }
 
             return ret;

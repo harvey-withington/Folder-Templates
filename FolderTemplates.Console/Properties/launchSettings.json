@@ -15,6 +15,17 @@
     "Console - No Target Folder": {
       "commandName": "Project",
       "commandLineArgs": "-sourceFolder \"D:\\Folder Templates\\Test Files\\_Basic Template - {projectName} - {projectVersion}\""
+    },
+    "Console - Flagless source folder": {
+      "commandName": "Project",
+      "commandLineArgs": "\"D:\\Folder Templates\\Test Files\\_Basic Template - {projectName} - {projectVersion}\" -targetFolder \"D:\\Folder Templates\\Test Results\" -projectName \"Project XXX\" -projectVersion \"vXXX\""
+    },
+    "Console - No flags": {
+      "commandName": "Project"
+    },
+    "Console - Help Flag": {
+      "commandName": "Project",
+      "commandLineArgs": "-help"
     }
   }
 }

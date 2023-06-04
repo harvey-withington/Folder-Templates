@@ -69,9 +69,9 @@ namespace FolderTemplates.CommandLine
         }
 
 
-        public string[] Parse(string[] args, bool allowUnspecified)
+        public string[] Parse(string[] args, bool allowUnspecified, string? defaultUnspecifiedFlag = null)
         {
-            return Parse(args, true, allowUnspecified);
+            return Parse(args, true, allowUnspecified, defaultUnspecifiedFlag);
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace FolderTemplates.CommandLine
         /// </summary>
         /// <param name="args">The arguments array sent to main()</param>
         /// <returns>Any reminding strings after arguments has been processed.</returns>
-        public string[] Parse(string[] args, bool clear, bool allowUnspecified)
+        public string[] Parse(string[] args, bool clear, bool allowUnspecified, string? defaultUnspecifiedFlag = null)
         {
             if (clear)
                 ClearValues();
@@ -90,6 +90,7 @@ namespace FolderTemplates.CommandLine
 
             while (i < args.Length)
             {
+                Console.WriteLine(args[i]);
                 if (args[i].Length > 1 && args[i][0] == '-')
                 {
                     // The current string is a parameter name
@@ -126,8 +127,18 @@ namespace FolderTemplates.CommandLine
                 }
                 else
                 {
-                    new_args.Add(args[i]);
-                    i++;
+                    if (defaultUnspecifiedFlag != null)
+                    {
+                        var key = defaultUnspecifiedFlag;
+                        //parameters.Add(key, new CommandLineParameter(key, false, ""));
+                        parameters[key].SetValue(args[i]);
+                        i++;
+                    }
+                    else
+                    {
+                        new_args.Add(args[i]);
+                        i++;
+                    }
                 }
             }
 

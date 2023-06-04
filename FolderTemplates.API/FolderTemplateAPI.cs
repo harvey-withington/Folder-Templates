@@ -20,8 +20,8 @@ namespace FolderTemplates.API
         public string? Name { get; set; }
         public string Match { get; set; }
         public string? Type { get; set; } = "text";
-        public string? Prompt { get; set; } = "enter value";
-        public string? Placeholder { get; set; } = "enter value";
+        public string? Prompt { get; set; } = null;
+        public string? Placeholder { get; set; } = null;
         public string? DefaultValue { get; set; } = null;
         public bool ReplaceInFileNames { get; set; } = false; 
         public bool ReplaceInFiles { get; set; } = false;
