@@ -1,0 +1,28 @@
+{
+  "name": "Project & Version",
+  "parameters": [
+    {
+      "name": "projectName",
+      "type": "text",
+      "prompt": "Project Name",
+      "placeholder": "enter a name for this project",
+      "defaultValue": "Project 001",
+      "replaceInFileNames": true,
+      "replaceInFiles": true
+    },
+    {
+      "name": "projectVersion",
+      "type": "text",
+      "prompt": "Project Version",
+      "placeholder": "enter the version for this project",
+      "defaultValue": "v001",
+      "replaceInFileNames": true,
+      "replaceInFiles": true
+    },
+    {
+      "match": "^_",
+      "defaultValue": "",
+      "replaceInFileNames": true
+    }
+  ]
+}
