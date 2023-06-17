@@ -90,7 +90,7 @@ namespace FolderTemplates.CommandLine
 
             while (i < args.Length)
             {
-                Console.WriteLine(args[i]);
+                //Console.WriteLine(args[i]);
                 if (args[i].Length > 1 && args[i][0] == '-')
                 {
                     // The current string is a parameter name
