@@ -11,18 +11,37 @@ namespace FolderTemplates.API
         public List<TemplateParameter> Parameters { get; set; } = new List<TemplateParameter>();
     }
 
-    public class TemplateParameter
+    public class ParameterInfo
+    {
+        public ParameterInfo()
+        {
+
+        }
+
+        public ParameterInfo(string? name, string? type, string? prompt, string? placeholder, string? defaultValue)
+        {
+            Name = name;
+            Type = type;
+            Prompt = prompt;
+            Placeholder = placeholder;
+            DefaultValue = defaultValue;
+        }
+
+        public string? Name { get; set; }
+        public string? Type { get; set; } = "text";
+        public string? Prompt { get; set; } = null;
+        public string? Placeholder { get; set; } = null;
+        public string? DefaultValue { get; set; } = null;
+    }
+
+    public class TemplateParameter: ParameterInfo
     {
         public TemplateParameter(string match) 
         {
             Match = match;
         }
-        public string? Name { get; set; }
+       
         public string Match { get; set; }
-        public string? Type { get; set; } = "text";
-        public string? Prompt { get; set; } = null;
-        public string? Placeholder { get; set; } = null;
-        public string? DefaultValue { get; set; } = null;
         public bool ReplaceInFileNames { get; set; } = false; 
         public bool ReplaceInFiles { get; set; } = false;
         public string? Value { get; set; } = null;
