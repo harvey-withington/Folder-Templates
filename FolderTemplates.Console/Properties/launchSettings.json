@@ -26,6 +26,14 @@
     "Console - Help Flag": {
       "commandName": "Project",
       "commandLineArgs": "-help"
+    },
+    "Console - List Params (json)": {
+      "commandName": "Project",
+      "commandLineArgs": "-sourceFolder \"D:\\Folder Templates\\Test Files\\_Basic Template - {projectName} - {projectVersion}\" -listParams json"
+    },
+    "Console - List Params (text)": {
+      "commandName": "Project",
+      "commandLineArgs": "-sourceFolder \"D:\\Folder Templates\\Test Files\\_Basic Template - {projectName} - {projectVersion}\" -listParams"
     }
   }
 }
