@@ -1,10 +1,7 @@
-﻿using System.ComponentModel;
-using System.Collections;
-using FolderTemplates.CommandLine;
+﻿using FolderTemplates.CommandLine;
 using FolderTemplates.API;
-using System.Text.Json;
+using FolderTemplates.Data;
 using Newtonsoft.Json;
-using System.Reflection.Metadata;
 
 namespace FolderTemplates.ConsoleApp
 {
@@ -38,6 +35,7 @@ namespace FolderTemplates.ConsoleApp
             cmd.RegisterParameter(new CommandLineParameter("targetFolder", false, "The path of the folder in which to generate the template result"));
             cmd.RegisterParameter(new CommandLineParameter("listParams", false, "Don't process the template folder, just list its parameters"));
             cmd.RegisterParameter(new CommandLineParameter("nowait", false, "Close the console after processing, do not wait for keypress"));
+            cmd.RegisterParameter(new CommandLineParameter("noprompt", false, "Do not prompt for missing parameters, use defaults instead"));
             cmd.Parse(args ?? Array.Empty<string>(), true, "sourceFolder");
 
             if (cmd.ParsedSuccessfully)
@@ -83,7 +81,7 @@ namespace FolderTemplates.ConsoleApp
 
                         switch (format)
                         {
-                            
+
 
                             case "plain":
                                 Console.WriteLine("Listing Template Folder params (format = " + format + "):\n");
@@ -117,14 +115,17 @@ namespace FolderTemplates.ConsoleApp
                                 matched.Value = cmd[unregisteredName].Value;
                         }
 
-                        // Prompt for missing tempalte parameters
-                        foreach (TemplateParameter param in template.Parameters.Where((p) => p != null && p.Value == null))
-                        {
-                            if (param.Prompt != null)
+                        if (!cmd["noprompt"].Exists) 
+                        { 
+                            // Prompt for missing tempalte parameters
+                            foreach (TemplateParameter param in template.Parameters.Where((p) => p != null && p.Value == null))
                             {
-                                Console.Write(param.Prompt + ": ");
-                                string? input = Console.ReadLine();
-                                param.Value = (input != null && input.Trim() != "") ? input.Trim() : param.DefaultValue;
+                                if (param.Prompt != null)
+                                {
+                                    Console.Write(param.Prompt + ": ");
+                                    string? input = Console.ReadLine();
+                                    param.Value = (input != null && input.Trim() != "") ? input.Trim() : param.DefaultValue;
+                                }
                             }
                         }
 

@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
+using FolderTemplates.Data;
 
 namespace FolderTemplates.API
 {
@@ -9,29 +10,6 @@ namespace FolderTemplates.API
     {
         public string? Name { get; set; }
         public List<TemplateParameter> Parameters { get; set; } = new List<TemplateParameter>();
-    }
-
-    public class ParameterInfo
-    {
-        public ParameterInfo()
-        {
-
-        }
-
-        public ParameterInfo(string? name, string? type, string? prompt, string? placeholder, string? defaultValue)
-        {
-            Name = name;
-            Type = type;
-            Prompt = prompt;
-            Placeholder = placeholder;
-            DefaultValue = defaultValue;
-        }
-
-        public string? Name { get; set; }
-        public string? Type { get; set; } = "text";
-        public string? Prompt { get; set; } = null;
-        public string? Placeholder { get; set; } = null;
-        public string? DefaultValue { get; set; } = null;
     }
 
     public class TemplateParameter: ParameterInfo
