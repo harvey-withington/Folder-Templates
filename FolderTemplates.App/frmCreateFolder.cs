@@ -140,9 +140,9 @@ namespace FolderTemplates.App
 
         private void tbDestinationFolderPath_Click(object sender, EventArgs e)
         {
-            if (folderBrowserDialog2.ShowDialog() == DialogResult.OK)
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
-                tbDestinationFolderPath.Text = folderBrowserDialog2.SelectedPath;
+                tbDestinationFolderPath.Text = folderBrowserDialog1.SelectedPath;
             }
         }
     }
