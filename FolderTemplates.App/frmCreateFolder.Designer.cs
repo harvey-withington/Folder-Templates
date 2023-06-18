@@ -35,13 +35,15 @@
             btnProcess = new Button();
             folderBrowserDialog1 = new FolderBrowserDialog();
             tbTemplateFolderPath = new TextBox();
+            tbDestinationFolderPath = new TextBox();
+            folderBrowserDialog2 = new FolderBrowserDialog();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // progressBar1
             // 
             progressBar1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            progressBar1.Location = new Point(12, 159);
+            progressBar1.Location = new Point(12, 200);
             progressBar1.Name = "progressBar1";
             progressBar1.Size = new Size(163, 23);
             progressBar1.TabIndex = 3;
@@ -68,14 +70,14 @@
             panel1.Controls.Add(tableLayoutPanel1);
             panel1.Location = new Point(12, 41);
             panel1.Name = "panel1";
-            panel1.Size = new Size(415, 112);
+            panel1.Size = new Size(415, 153);
             panel1.TabIndex = 5;
             // 
             // btnCancel
             // 
             btnCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnCancel.DialogResult = DialogResult.Cancel;
-            btnCancel.Location = new Point(271, 159);
+            btnCancel.Location = new Point(271, 200);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(75, 23);
             btnCancel.TabIndex = 6;
@@ -85,8 +87,9 @@
             // 
             // btnProcess
             // 
+            btnProcess.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnProcess.DialogResult = DialogResult.OK;
-            btnProcess.Location = new Point(352, 159);
+            btnProcess.Location = new Point(352, 200);
             btnProcess.Name = "btnProcess";
             btnProcess.Size = new Size(75, 23);
             btnProcess.TabIndex = 8;
@@ -101,9 +104,19 @@
             tbTemplateFolderPath.Name = "tbTemplateFolderPath";
             tbTemplateFolderPath.PlaceholderText = "Click to select template folder";
             tbTemplateFolderPath.ReadOnly = true;
-            tbTemplateFolderPath.Size = new Size(412, 23);
+            tbTemplateFolderPath.Size = new Size(206, 23);
             tbTemplateFolderPath.TabIndex = 9;
             tbTemplateFolderPath.Click += tbTemplateFolderPath_Click;
+            // 
+            // tbDestinationFolderPath
+            // 
+            tbDestinationFolderPath.Location = new Point(224, 12);
+            tbDestinationFolderPath.Name = "tbDestinationFolderPath";
+            tbDestinationFolderPath.PlaceholderText = "Click to select destination folder";
+            tbDestinationFolderPath.ReadOnly = true;
+            tbDestinationFolderPath.Size = new Size(203, 23);
+            tbDestinationFolderPath.TabIndex = 10;
+            tbDestinationFolderPath.Click += tbDestinationFolderPath_Click;
             // 
             // frmCreateFolder
             // 
@@ -112,7 +125,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = btnCancel;
             CausesValidation = false;
-            ClientSize = new Size(439, 194);
+            ClientSize = new Size(439, 235);
+            Controls.Add(tbDestinationFolderPath);
             Controls.Add(tbTemplateFolderPath);
             Controls.Add(btnProcess);
             Controls.Add(btnCancel);
@@ -135,5 +149,7 @@
         private Button btnProcess;
         private FolderBrowserDialog folderBrowserDialog1;
         private TextBox tbTemplateFolderPath;
+        private TextBox tbDestinationFolderPath;
+        private FolderBrowserDialog folderBrowserDialog2;
     }
 }

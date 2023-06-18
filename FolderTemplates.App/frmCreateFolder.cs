@@ -1,11 +1,6 @@
 using System.Collections.Specialized;
 using System.Configuration;
 using System.Diagnostics;
-using System.IO;
-using System.Reflection.Metadata;
-using System.Runtime.CompilerServices;
-using System.Text.Json;
-using System.Windows.Forms;
 using FolderTemplates.Data;
 using Newtonsoft.Json;
 
@@ -83,35 +78,51 @@ namespace FolderTemplates.App
             return strOutput;
         }
 
-        private void ProcessFolder(string cmdPath, string sourceFolder)
+        private NameValueCollection GetParameters()
         {
-            string? command = Path.GetFullPath(cmdPath);
-            string commandParameters = "-sourceFolder \"" + sourceFolder + "\" -nowait -noprompt";
-            string? workingDirectory = Path.GetDirectoryName(command);
+            NameValueCollection parameters = new();
 
-            // Process all the textbox values and add them
-            // to the command parameters
             foreach (Control ctrl in tableLayoutPanel1.Controls)
             {
                 if (ctrl is TextBox tb)
                 {
                     ParameterInfo? param = tb != null ? tb.Tag as ParameterInfo : null;
                     string? val = tb?.Text;
-                    commandParameters += (!string.IsNullOrWhiteSpace(val) && param != null) ? " -" + param.Name + " \"" + val + "\"" : "";
+                    if (param != null && !string.IsNullOrWhiteSpace(val))
+                        parameters.Add(param.Name, val);
                 }
             }
 
-            string? strOutput = ExecuteCommand(command, commandParameters, workingDirectory);
+            return parameters;
+        }
 
-            MessageBox.Show(strOutput);
+        private static string? ProcessFolder(string cmdPath, string sourceFolder, NameValueCollection? parameters = null, string? targetFolder = null)
+        {
+            string? command = Path.GetFullPath(cmdPath);
+            string? workingDirectory = Path.GetDirectoryName(command);
+            string commandParameters = "-sourceFolder \"" + sourceFolder + "\" -nowait -noprompt";
 
-            this.Close();
+
+            if (targetFolder != null)
+                commandParameters += " -targetFolder \"" + targetFolder + "\"";
+
+            if (parameters != null)
+                foreach (string param in parameters.Keys)
+                {
+                    string? val = parameters[param];
+                    commandParameters += !string.IsNullOrWhiteSpace(val) ? " -" + param + " \"" + val + "\"" : "";
+                }
+
+            return ExecuteCommand(command, commandParameters, workingDirectory);
         }
 
         private void btnProcess_Click(object sender, EventArgs e)
         {
             string sourceFolder = tbTemplateFolderPath.Text;
-            ProcessFolder(appSettings["cmdPath"] ?? "", sourceFolder);
+            string targetFolder = tbDestinationFolderPath.Text;
+            string? strOutput = ProcessFolder(appSettings["cmdPath"] ?? "", sourceFolder, GetParameters(), !string.IsNullOrWhiteSpace(targetFolder) ? targetFolder : null);
+            MessageBox.Show(strOutput);
+            this.Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -121,9 +132,17 @@ namespace FolderTemplates.App
 
         private void tbTemplateFolderPath_Click(object sender, EventArgs e)
         {
-            if(folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
                 tbTemplateFolderPath.Text = folderBrowserDialog1.SelectedPath;
+            }
+        }
+
+        private void tbDestinationFolderPath_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog2.ShowDialog() == DialogResult.OK)
+            {
+                tbDestinationFolderPath.Text = folderBrowserDialog2.SelectedPath;
             }
         }
     }
