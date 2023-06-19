@@ -1,0 +1,15 @@
+{
+  "profiles": {
+    "FolderTemplates.App": {
+      "commandName": "Project"
+    },
+    "sourceFolder": {
+      "commandName": "Project",
+      "commandLineArgs": "-sourceFolder \"D:\\Folder Templates\\Test Files\\_Basic Template - {projectName} - {projectVersion}\""
+    },
+    "folder & targetFolder": {
+      "commandName": "Project",
+      "commandLineArgs": "\"D:\\Folder Templates\\Test Files\\_Basic Template - {projectName} - {projectVersion}\" -targetFolder \"D:\\Folder Templates\\Test Results\""
+    }
+  }
+}

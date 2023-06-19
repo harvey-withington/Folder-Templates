@@ -1,6 +1,7 @@
 using System.Collections.Specialized;
 using System.Configuration;
 using System.Diagnostics;
+using FolderTemplates.CommandLine;
 using FolderTemplates.Data;
 using Newtonsoft.Json;
 
@@ -8,22 +9,40 @@ namespace FolderTemplates.App
 {
     public partial class frmCreateFolder : Form
     {
-        readonly NameValueCollection? appSettings;
-        string cmdPath;
+        private readonly NameValueCollection? appSettings;
+        private readonly string cmdPath;
 
-        public frmCreateFolder()
+        public frmCreateFolder(string[] args)
         {
             InitializeComponent();
 
             string defaultCmdPath = "FolderTemplates.Console.exe";
             appSettings = ConfigurationManager.AppSettings;
             cmdPath = (appSettings != null && appSettings["cmdPath"] != null) ? appSettings["cmdPath"] ?? defaultCmdPath : defaultCmdPath;
+
+            ConsoleCommandLine cmd = new();
+            cmd.RegisterParameter(new CommandLineParameter("sourceFolder", false, "The path of the Template Folder to process"));
+            //cmd.RegisterParameter(new CommandLineParameter("templateFile", false, "The path of the Template Folder Definition file to apply"));
+            cmd.RegisterParameter(new CommandLineParameter("targetFolder", false, "The path of the folder in which to generate the template result"));
+            cmd.Parse(args ?? Array.Empty<string>(), true, "sourceFolder");
+
+            if (cmd.ParsedSuccessfully)
+            {
+                // Get the source, target and template paths from supplied parameters
+                string? initialSourcePath = cmd["sourceFolder"].Exists ? cmd["sourceFolder"].Value : "";
+                string? initialTargetPath = cmd["targetFolder"].Exists ? cmd["targetFolder"].Value : "";
+                tbTemplateFolderPath.Text = initialSourcePath;
+                tbDestinationFolderPath.Text = initialTargetPath;
+
+                if(initialSourcePath != null)
+                    CreateForm(cmdPath, initialSourcePath);
+            }
         }
 
-        private void CreateForm(string cmdPath, string templatePath)
+        private void CreateForm(string cmdPath, string sourceFolder)
         {
             string? command = Path.GetFullPath(cmdPath);
-            string? commandParameters = "-sourceFolder \"" + templatePath + "\" -listParams json -nowait";
+            string? commandParameters = "-sourceFolder \"" + sourceFolder + "\" -listParams json -nowait";
             string? workingDirectory = Path.GetDirectoryName(command);
             string? strOutput = ExecuteCommand(command, commandParameters, workingDirectory);
             List<ParameterInfo> parameters = JsonConvert.DeserializeObject<List<ParameterInfo>>(strOutput ?? "") ?? new List<ParameterInfo>();
