@@ -8,19 +8,22 @@ namespace FolderTemplates.App
 {
     public partial class frmCreateFolder : Form
     {
-        readonly NameValueCollection appSettings = ConfigurationManager.AppSettings;
+        readonly NameValueCollection? appSettings;
+        string cmdPath;
 
         public frmCreateFolder()
         {
             InitializeComponent();
 
-            CreateForm(appSettings["cmdPath"] ?? "");
+            string defaultCmdPath = "FolderTemplates.Console.exe";
+            appSettings = ConfigurationManager.AppSettings;
+            cmdPath = (appSettings != null && appSettings["cmdPath"] != null) ? appSettings["cmdPath"] ?? defaultCmdPath : defaultCmdPath;
         }
 
-        private void CreateForm(string path)
+        private void CreateForm(string cmdPath, string templatePath)
         {
-            string? command = Path.GetFullPath(path);
-            string? commandParameters = "-sourceFolder \"D:\\Folder Templates\\Test Files\\_Basic Template - {projectName} - {projectVersion}\" -listParams json -nowait";
+            string? command = Path.GetFullPath(cmdPath);
+            string? commandParameters = "-sourceFolder \"" + templatePath + "\" -listParams json -nowait";
             string? workingDirectory = Path.GetDirectoryName(command);
             string? strOutput = ExecuteCommand(command, commandParameters, workingDirectory);
             List<ParameterInfo> parameters = JsonConvert.DeserializeObject<List<ParameterInfo>>(strOutput ?? "") ?? new List<ParameterInfo>();
@@ -120,7 +123,7 @@ namespace FolderTemplates.App
         {
             string sourceFolder = tbTemplateFolderPath.Text;
             string targetFolder = tbDestinationFolderPath.Text;
-            string? strOutput = ProcessFolder(appSettings["cmdPath"] ?? "", sourceFolder, GetParameters(), !string.IsNullOrWhiteSpace(targetFolder) ? targetFolder : null);
+            string? strOutput = ProcessFolder(cmdPath, sourceFolder, GetParameters(), !string.IsNullOrWhiteSpace(targetFolder) ? targetFolder : null);
             MessageBox.Show(strOutput);
             this.Close();
         }
@@ -135,6 +138,7 @@ namespace FolderTemplates.App
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
                 tbTemplateFolderPath.Text = folderBrowserDialog1.SelectedPath;
+                CreateForm(cmdPath, tbTemplateFolderPath.Text);
             }
         }
 
