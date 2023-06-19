@@ -11,6 +11,8 @@ A simple command line utility & winforms app to create folder structures based o
 5) Right-click in the "Send To" folder and select "Paste Shortcut"
 6) Rename the new Shortcut to your preferred "Send To" command name (e.g. "Folder Templates")
 
+<p align="center"><img src="https://github.com/HPoppington/Folder-Templates/assets/52856520/c1ae9a60-5520-4c22-b910-af8c54c3c48c" alt="Send To -> Folder Templates"></p>
+
 ## Create a Folder Template
 
 (instructions coming soon... for now, see the "Samples" folder for a kitchen sink example)
