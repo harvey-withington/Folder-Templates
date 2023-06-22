@@ -12,12 +12,17 @@ namespace FolderTemplates.App
     {
         private readonly NameValueCollection? appSettings;
         private readonly string cmdPath;
+        private readonly string shortcutName = "Process with Folder Templates";
 
         public frmCreateFolder(string[] args)
         {
             InitializeComponent();
 
-            string defaultCmdPath = "FolderTemplates.Console.exe";
+            bool sendToExists = Shortcut.SendToShortcutExists(shortcutName);
+            mnuRemoveSendTo.Visible = sendToExists;
+            mnuAddSendTo.Visible = !sendToExists;
+
+                string defaultCmdPath = "FolderTemplates.Console.exe";
             appSettings = ConfigurationManager.AppSettings;
             cmdPath = (appSettings != null && appSettings["cmdPath"] != null) ? appSettings["cmdPath"] ?? defaultCmdPath : defaultCmdPath;
 
@@ -238,7 +243,7 @@ namespace FolderTemplates.App
 
         private void tbDestinationFolderPath_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if(e.KeyChar == ((char)Keys.Space))
+            if (e.KeyChar == ((char)Keys.Space))
                 if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
                 {
                     tbDestinationFolderPath.Text = folderBrowserDialog1.SelectedPath;
@@ -248,6 +253,32 @@ namespace FolderTemplates.App
         private void frmCreateFolder_Load(object sender, EventArgs e)
         {
             this.ActiveControl = tbTemplateFolderPath;
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void mnuAddSendTo_Click(object sender, EventArgs e)
+        {
+            bool sendToExists = Shortcut.SendToShortcutExists(shortcutName);
+            if (!sendToExists)
+            {
+                Shortcut.CreateSendToShortcut(shortcutName);
+                mnuRemoveSendTo.Visible = true;
+                mnuAddSendTo.Visible = false;
+            }
+        }
+
+        private void mnuRemoveSendTo_Click(object sender, EventArgs e)
+        {
+            if (Shortcut.SendToShortcutExists(shortcutName))
+            {
+                Shortcut.DeleteSendToShortcut(shortcutName);
+                mnuRemoveSendTo.Visible = false;
+                mnuAddSendTo.Visible = true;
+            }
         }
     }
 }

@@ -39,6 +39,12 @@
             tbOutput = new TextBox();
             splitContainer2 = new SplitContainer();
             cbExitImmediately = new CheckBox();
+            menuStrip1 = new MenuStrip();
+            fileToolStripMenuItem = new ToolStripMenuItem();
+            mnuOptions = new ToolStripMenuItem();
+            mnuAddSendTo = new ToolStripMenuItem();
+            mnuRemoveSendTo = new ToolStripMenuItem();
+            mnuExit = new ToolStripMenuItem();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -48,6 +54,7 @@
             splitContainer2.Panel1.SuspendLayout();
             splitContainer2.Panel2.SuspendLayout();
             splitContainer2.SuspendLayout();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -72,7 +79,7 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(420, 116);
+            panel1.Size = new Size(420, 107);
             panel1.TabIndex = 7;
             // 
             // btnCancel
@@ -127,7 +134,7 @@
             // 
             splitContainer1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             splitContainer1.IsSplitterFixed = true;
-            splitContainer1.Location = new Point(12, 12);
+            splitContainer1.Location = new Point(12, 27);
             splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -152,13 +159,13 @@
             tbOutput.Name = "tbOutput";
             tbOutput.ReadOnly = true;
             tbOutput.ScrollBars = ScrollBars.Vertical;
-            tbOutput.Size = new Size(420, 112);
+            tbOutput.Size = new Size(420, 106);
             tbOutput.TabIndex = 8;
             tbOutput.TabStop = false;
             // 
             // splitContainer2
             // 
-            splitContainer2.Location = new Point(12, 48);
+            splitContainer2.Location = new Point(12, 63);
             splitContainer2.Name = "splitContainer2";
             splitContainer2.Orientation = Orientation.Horizontal;
             // 
@@ -169,8 +176,8 @@
             // splitContainer2.Panel2
             // 
             splitContainer2.Panel2.Controls.Add(tbOutput);
-            splitContainer2.Size = new Size(420, 232);
-            splitContainer2.SplitterDistance = 116;
+            splitContainer2.Size = new Size(420, 217);
+            splitContainer2.SplitterDistance = 107;
             splitContainer2.TabIndex = 13;
             splitContainer2.TabStop = false;
             // 
@@ -186,6 +193,50 @@
             cbExitImmediately.Text = "Exit When Complete";
             cbExitImmediately.UseVisualStyleBackColor = true;
             // 
+            // menuStrip1
+            // 
+            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(444, 24);
+            menuStrip1.TabIndex = 14;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { mnuOptions, mnuExit });
+            fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            fileToolStripMenuItem.Size = new Size(37, 20);
+            fileToolStripMenuItem.Text = "File";
+            // 
+            // mnuOptions
+            // 
+            mnuOptions.DropDownItems.AddRange(new ToolStripItem[] { mnuAddSendTo, mnuRemoveSendTo });
+            mnuOptions.Name = "mnuOptions";
+            mnuOptions.Size = new Size(180, 22);
+            mnuOptions.Text = "Options";
+            // 
+            // mnuAddSendTo
+            // 
+            mnuAddSendTo.Name = "mnuAddSendTo";
+            mnuAddSendTo.Size = new Size(190, 22);
+            mnuAddSendTo.Text = "Add to Send To";
+            mnuAddSendTo.Click += mnuAddSendTo_Click;
+            // 
+            // mnuRemoveSendTo
+            // 
+            mnuRemoveSendTo.Name = "mnuRemoveSendTo";
+            mnuRemoveSendTo.Size = new Size(190, 22);
+            mnuRemoveSendTo.Text = "Remove from Send To";
+            mnuRemoveSendTo.Click += mnuRemoveSendTo_Click;
+            // 
+            // mnuExit
+            // 
+            mnuExit.Name = "mnuExit";
+            mnuExit.Size = new Size(180, 22);
+            mnuExit.Text = "Exit";
+            mnuExit.Click += exitToolStripMenuItem_Click;
+            // 
             // frmCreateFolder
             // 
             AcceptButton = btnProcess;
@@ -199,6 +250,8 @@
             Controls.Add(splitContainer1);
             Controls.Add(btnProcess);
             Controls.Add(btnCancel);
+            Controls.Add(menuStrip1);
+            MainMenuStrip = menuStrip1;
             MinimumSize = new Size(350, 200);
             Name = "frmCreateFolder";
             Text = "Folder Templates: Create Folder";
@@ -216,6 +269,8 @@
             splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
             splitContainer2.ResumeLayout(false);
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -232,5 +287,11 @@
         private TextBox tbOutput;
         private SplitContainer splitContainer2;
         private CheckBox cbExitImmediately;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem fileToolStripMenuItem;
+        private ToolStripMenuItem mnuOptions;
+        private ToolStripMenuItem mnuExit;
+        private ToolStripMenuItem mnuAddSendTo;
+        private ToolStripMenuItem mnuRemoveSendTo;
     }
 }

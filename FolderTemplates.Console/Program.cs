@@ -9,26 +9,6 @@ namespace FolderTemplates.ConsoleApp
     {
         static void Main(string[] args)
         {
-            string shortcutName = "Process with Folder Templates";
-
-            if (args != null && args.Length>0 && args[0]=="/Install")
-            {
-                Console.Write("Installing... ");
-                //Console.ReadLine();
-                Shortcut.CreateSendToShortcut(shortcutName);
-                Console.WriteLine("Done.");
-                Environment.Exit(0);
-            }
-
-            if (args != null && args.Length > 0 && args[0] == "/Uninstall")
-            {
-                Console.Write("Uninstalling... ");
-                //Console.ReadLine();
-                Shortcut.DeleteSendToShortcut(shortcutName);
-                Console.WriteLine("Done.");
-                Environment.Exit(0);
-            }
-
             ConsoleCommandLine cmd = new();
             cmd.RegisterParameter(new CommandLineParameter("sourceFolder", true, "The path of the Template Folder to process"));
             cmd.RegisterParameter(new CommandLineParameter("templateFile", false, "The path of the Template Folder Definition file to apply"));
