@@ -9,31 +9,12 @@ namespace FolderTemplates.ConsoleApp
     {
         static void Main(string[] args)
         {
-            string shortcutName = "Process with Folder Templates";
-
-            if (args != null && args.Length>0 && args[0]=="/Install")
-            {
-                Console.Write("Installing... ");
-                //Console.ReadLine();
-                Shortcut.CreateSendToShortcut(shortcutName);
-                Console.WriteLine("Done.");
-                Environment.Exit(0);
-            }
-
-            if (args != null && args.Length > 0 && args[0] == "/Uninstall")
-            {
-                Console.Write("Uninstalling... ");
-                //Console.ReadLine();
-                Shortcut.DeleteSendToShortcut(shortcutName);
-                Console.WriteLine("Done.");
-                Environment.Exit(0);
-            }
-
             ConsoleCommandLine cmd = new();
             cmd.RegisterParameter(new CommandLineParameter("sourceFolder", true, "The path of the Template Folder to process"));
             cmd.RegisterParameter(new CommandLineParameter("templateFile", false, "The path of the Template Folder Definition file to apply"));
             cmd.RegisterParameter(new CommandLineParameter("targetFolder", false, "The path of the folder in which to generate the template result"));
             cmd.RegisterParameter(new CommandLineParameter("listParams", false, "Don't process the template folder, just list its parameters"));
+            cmd.RegisterParameter(new CommandLineParameter("getTemplateInfo", false, "Don't process the template folder, just list its properties"));
             cmd.RegisterParameter(new CommandLineParameter("nowait", false, "Close the console after processing, do not wait for keypress"));
             cmd.RegisterParameter(new CommandLineParameter("noprompt", false, "Do not prompt for missing parameters, use defaults instead"));
             cmd.Parse(args ?? Array.Empty<string>(), true, "sourceFolder");
@@ -81,25 +62,43 @@ namespace FolderTemplates.ConsoleApp
 
                         switch (format)
                         {
-
-
                             case "plain":
                                 Console.WriteLine("Listing Template Folder params (format = " + format + "):\n");
-                                // Prompt for missing tempalte parameters
+                                // List tempalte parameters
                                 foreach (ParameterInfo param in publicParams)
                                 {
                                     Console.WriteLine(param.Name + " (" + param.Type + "): '" + param.Prompt + "' = [" + param.DefaultValue + "]");
                                 }
                                 break;
                             case "json":
-                                //Console.WriteLine("Not implemented: " + format + ".");
-                                //Console.WriteLine(new JsonResult(myResponseObject) { SerializerSettings = new JsonSerializerOptions() { WriteIndented = true } };)
                                 string serialized = JsonConvert.SerializeObject(publicParams, Formatting.Indented);
                                 Console.WriteLine(serialized);
                                 break;
                             default:
                                 Console.WriteLine("Invalid format: " + format + ".");
                                 break;
+                        }
+                    }
+                    else if (cmd["getTemplateInfo"].Exists)
+                    {
+                        string? format = string.IsNullOrWhiteSpace(cmd["getTemplateInfo"]?.Value) ? "plain" : cmd["getTemplateInfo"].Value;
+                        TemplateInfo templateInfo = new(template.Name, template.DefaultTargetPath);
+                        switch (format)
+                        {
+                            case "plain":
+                                Console.WriteLine("Listing Template Info (format = " + format + "):\n");
+                                // List tempalte info
+                                Console.WriteLine("Name: " + templateInfo.Name);
+                                Console.WriteLine("DefaultTargetPath: " + templateInfo.DefaultTargetPath);
+                                break;
+                            case "json":
+                                string serialized = JsonConvert.SerializeObject(templateInfo, Formatting.Indented);
+                                Console.WriteLine(serialized);
+                                break;
+                            default:
+                                Console.WriteLine("Invalid format: " + format + ".");
+                                break;
+
                         }
                     }
                     else
@@ -115,8 +114,8 @@ namespace FolderTemplates.ConsoleApp
                                 matched.Value = cmd[unregisteredName].Value;
                         }
 
-                        if (!cmd["noprompt"].Exists) 
-                        { 
+                        if (!cmd["noprompt"].Exists)
+                        {
                             // Prompt for missing tempalte parameters
                             foreach (TemplateParameter param in template.Parameters.Where((p) => p != null && p.Value == null))
                             {

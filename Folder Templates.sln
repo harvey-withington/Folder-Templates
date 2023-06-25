@@ -15,11 +15,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "FolderTemplates.Setup", "FolderTemplates.Setup\FolderTemplates.Setup.vdproj", "{DF9AE5B4-5902-4CEC-913B-0D6EC57395AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FolderTemplates.App", "FolderTemplates.App\FolderTemplates.App.csproj", "{2A4E9092-A22A-44C7-81CA-7D938AB88BDB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FolderTemplates.App", "FolderTemplates.App\FolderTemplates.App.csproj", "{2A4E9092-A22A-44C7-81CA-7D938AB88BDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FolderTemplates.Data", "FolderTemplates.Data\FolderTemplates.Data.csproj", "{9AEFF22C-7152-448C-909B-8DEE0BEFEAFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FolderTemplates.Data", "FolderTemplates.Data\FolderTemplates.Data.csproj", "{9AEFF22C-7152-448C-909B-8DEE0BEFEAFB}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "FolderTemplates.Setup", "FolderTemplates.Setup\FolderTemplates.Setup.vdproj", "{1A982362-B654-4009-9C41-EB68C4729778}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,14 +81,6 @@ Global
 		{09CC889E-E6BD-4388-A074-92231EDD6FD9}.Release|x64.Build.0 = Release|Any CPU
 		{09CC889E-E6BD-4388-A074-92231EDD6FD9}.Release|x86.ActiveCfg = Release|Any CPU
 		{09CC889E-E6BD-4388-A074-92231EDD6FD9}.Release|x86.Build.0 = Release|Any CPU
-		{DF9AE5B4-5902-4CEC-913B-0D6EC57395AD}.Debug|Any CPU.ActiveCfg = Debug
-		{DF9AE5B4-5902-4CEC-913B-0D6EC57395AD}.Debug|ARM64.ActiveCfg = Debug
-		{DF9AE5B4-5902-4CEC-913B-0D6EC57395AD}.Debug|x64.ActiveCfg = Debug
-		{DF9AE5B4-5902-4CEC-913B-0D6EC57395AD}.Debug|x86.ActiveCfg = Debug
-		{DF9AE5B4-5902-4CEC-913B-0D6EC57395AD}.Release|Any CPU.ActiveCfg = Release
-		{DF9AE5B4-5902-4CEC-913B-0D6EC57395AD}.Release|ARM64.ActiveCfg = Release
-		{DF9AE5B4-5902-4CEC-913B-0D6EC57395AD}.Release|x64.ActiveCfg = Release
-		{DF9AE5B4-5902-4CEC-913B-0D6EC57395AD}.Release|x86.ActiveCfg = Release
 		{2A4E9092-A22A-44C7-81CA-7D938AB88BDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2A4E9092-A22A-44C7-81CA-7D938AB88BDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A4E9092-A22A-44C7-81CA-7D938AB88BDB}.Debug|ARM64.ActiveCfg = Debug|Any CPU
@@ -121,6 +113,14 @@ Global
 		{9AEFF22C-7152-448C-909B-8DEE0BEFEAFB}.Release|x64.Build.0 = Release|Any CPU
 		{9AEFF22C-7152-448C-909B-8DEE0BEFEAFB}.Release|x86.ActiveCfg = Release|Any CPU
 		{9AEFF22C-7152-448C-909B-8DEE0BEFEAFB}.Release|x86.Build.0 = Release|Any CPU
+		{1A982362-B654-4009-9C41-EB68C4729778}.Debug|Any CPU.ActiveCfg = Debug
+		{1A982362-B654-4009-9C41-EB68C4729778}.Debug|ARM64.ActiveCfg = Debug
+		{1A982362-B654-4009-9C41-EB68C4729778}.Debug|x64.ActiveCfg = Debug
+		{1A982362-B654-4009-9C41-EB68C4729778}.Debug|x86.ActiveCfg = Debug
+		{1A982362-B654-4009-9C41-EB68C4729778}.Release|Any CPU.ActiveCfg = Release
+		{1A982362-B654-4009-9C41-EB68C4729778}.Release|ARM64.ActiveCfg = Release
+		{1A982362-B654-4009-9C41-EB68C4729778}.Release|x64.ActiveCfg = Release
+		{1A982362-B654-4009-9C41-EB68C4729778}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
