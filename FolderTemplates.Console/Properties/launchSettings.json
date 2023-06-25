@@ -29,7 +29,7 @@
     },
     "Console - List Params (json)": {
       "commandName": "Project",
-      "commandLineArgs": "-sourceFolder \"D:\\Folder Templates\\Test Files\\_Basic Template - {projectName} - {projectVersion}\" -listParams json"
+      "commandLineArgs": "-sourceFolder \"D:\\Folder Templates\\Test Files\\_Basic Template - {projectName} - {projectVersion}\" -listParams json -nowait > ../../../parameters.json"
     },
     "Console - List Params (text)": {
       "commandName": "Project",
