@@ -5,15 +5,15 @@ A simple command line utility & winforms app to create folder structures based o
 ## Windows
 
 ### Automatic Installation
-1) Download the setup distribution for the [latest release](https://github.com/HPoppington/Folder-Templates/releases).
+1) Download the _[setup distribution](## "The file should be called win-x64-v[maj].[min][rel]-setup.zip")_ for the [latest release](https://github.com/HPoppington/Folder-Templates/releases).
 1) Extract the setup.exe and FolderTemplatesSetup.msi files to a temporary folder.
 1) Run setup.exe and follow the prompts.
 
 ### Manual Installation
-1) Download the portable distribution of the [latest release](https://github.com/HPoppington/Folder-Templates/releases).
+1) Download the _[portable distribution](## "The file should be called win-x64-v[maj].[min][rel]-portable.zip")_ of the [latest release](https://github.com/HPoppington/Folder-Templates/releases).
 1) Extract zip file to your preferred application path (recommended: "C:\Users\\[Your_User_Name]\AppData\Local\Folder Templates")
   - Note: overwrite files if you're upgrading
-  - Hint: type %LocalAppData% into Windows Wxplorer to find your user's AppData path
+  - Hint: type %LocalAppData% into Windows Explorer to find your user's AppData path
 
 ### Automatically Install "Send To" shortcut
 If this is your first install, and you'd like to access Folder Templates from your Windows "Send To" menu (recommended):
