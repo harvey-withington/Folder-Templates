@@ -2,20 +2,25 @@
 
 A simple command line utility & winforms app to create folder structures based on templates.
 
-## Installation (Windows)
+## Windows
 
-### Install the App
-1) Download the [latest release](https://github.com/HPoppington/Folder-Templates/releases).
-1) Extract zip file to your preferred application path (recommended "C:\Users\\[Your_User_Name]\AppData\Local\Folder Templates")
+### Automatic Installation
+1) Download the setup distribution for the [latest release](https://github.com/HPoppington/Folder-Templates/releases).
+1) Extract the setup.exe and FolderTemplatesSetup.msi files to a temporary folder.
+1) Run setup.exe and follow the prompts.
+
+### Manual Installation
+1) Download the portable distribution of the [latest release](https://github.com/HPoppington/Folder-Templates/releases).
+1) Extract zip file to your preferred application path (recommended: "C:\Users\\[Your_User_Name]\AppData\Local\Folder Templates")
   - Note: overwrite files if you're upgrading
   - Hint: type %LocalAppData% into Windows Wxplorer to find your user's AppData path
 
-### Install the "Send To" shortcut (automatic)
+### Automatically Install "Send To" shortcut
 If this is your first install, and you'd like to access Folder Templates from your Windows "Send To" menu (recommended):
 1) Run FolderTemplates.App.exe
 1) In the menu, select File -> Options -> Add to Send To
 
-### Install the "Send To" shortcut (manual)
+### Manually Install "Send To" shortcut
 If you'd like to customize your Send To shortcut for some reason:
 1) Right-click on "FolderTemplates.App.exe" and select "Copy"
 1) Open the "Send To" folder by typing "shell:sendto" in the Windows Explorer address bar
