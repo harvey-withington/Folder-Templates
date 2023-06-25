@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FolderTemplates.App", "Fold
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FolderTemplates.Data", "FolderTemplates.Data\FolderTemplates.Data.csproj", "{9AEFF22C-7152-448C-909B-8DEE0BEFEAFB}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "FolderTemplates.Setup", "FolderTemplates.Setup\FolderTemplates.Setup.vdproj", "{1A982362-B654-4009-9C41-EB68C4729778}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +113,14 @@ Global
 		{9AEFF22C-7152-448C-909B-8DEE0BEFEAFB}.Release|x64.Build.0 = Release|Any CPU
 		{9AEFF22C-7152-448C-909B-8DEE0BEFEAFB}.Release|x86.ActiveCfg = Release|Any CPU
 		{9AEFF22C-7152-448C-909B-8DEE0BEFEAFB}.Release|x86.Build.0 = Release|Any CPU
+		{1A982362-B654-4009-9C41-EB68C4729778}.Debug|Any CPU.ActiveCfg = Debug
+		{1A982362-B654-4009-9C41-EB68C4729778}.Debug|ARM64.ActiveCfg = Debug
+		{1A982362-B654-4009-9C41-EB68C4729778}.Debug|x64.ActiveCfg = Debug
+		{1A982362-B654-4009-9C41-EB68C4729778}.Debug|x86.ActiveCfg = Debug
+		{1A982362-B654-4009-9C41-EB68C4729778}.Release|Any CPU.ActiveCfg = Release
+		{1A982362-B654-4009-9C41-EB68C4729778}.Release|ARM64.ActiveCfg = Release
+		{1A982362-B654-4009-9C41-EB68C4729778}.Release|x64.ActiveCfg = Release
+		{1A982362-B654-4009-9C41-EB68C4729778}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
