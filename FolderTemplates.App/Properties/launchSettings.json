@@ -10,6 +10,14 @@
     "folder & targetFolder": {
       "commandName": "Project",
       "commandLineArgs": "\"D:\\Folder Templates\\Test Files\\_Basic Template - {projectName} - {projectVersion}\" -targetFolder \"D:\\Folder Templates\\Test Results\""
+    },
+    "folder & defaultFargetPath": {
+      "commandName": "Project",
+      "commandLineArgs": "\"D:\\Folder Templates\\Test Files\\Templates\\TM1\\_template_bedrock {tm1ServerName}\""
+    },
+    "folder & target & default": {
+      "commandName": "Project",
+      "commandLineArgs": "\"D:\\Folder Templates\\Test Files\\Templates\\TM1\\_template_bedrock {tm1ServerName}\" -targetFolder \"D:\\Folder Templates\""
     }
   }
 }
