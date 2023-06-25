@@ -11,6 +11,7 @@ namespace FolderTemplates.App
     public partial class frmCreateFolder : Form
     {
         private readonly NameValueCollection? appSettings;
+        ConsoleCommandLine cmd;
         private readonly string cmdPath;
         private readonly string shortcutName = "Process with Folder Templates";
 
@@ -22,11 +23,11 @@ namespace FolderTemplates.App
             mnuRemoveSendTo.Visible = sendToExists;
             mnuAddSendTo.Visible = !sendToExists;
 
-                string defaultCmdPath = "FolderTemplates.Console.exe";
+            string defaultCmdPath = "FolderTemplates.Console.exe";
             appSettings = ConfigurationManager.AppSettings;
             cmdPath = (appSettings != null && appSettings["cmdPath"] != null) ? appSettings["cmdPath"] ?? defaultCmdPath : defaultCmdPath;
 
-            ConsoleCommandLine cmd = new();
+            cmd = new();
             cmd.RegisterParameter(new CommandLineParameter("sourceFolder", false, "The path of the Template Folder to process"));
             //cmd.RegisterParameter(new CommandLineParameter("templateFile", false, "The path of the Template Folder Definition file to apply"));
             cmd.RegisterParameter(new CommandLineParameter("targetFolder", false, "The path of the folder in which to generate the template result"));
@@ -40,19 +41,50 @@ namespace FolderTemplates.App
                 tbTemplateFolderPath.Text = initialSourcePath;
                 tbDestinationFolderPath.Text = initialTargetPath;
 
-                if (initialSourcePath != null)
-                    CreateForm(cmdPath, initialSourcePath);
+                CreateForm(cmdPath, initialSourcePath, initialTargetPath);
             }
         }
 
-        private void CreateForm(string cmdPath, string sourceFolder)
+        private void CreateForm(string cmdPath, string? sourceFolder, string? targetFolder = null)
+        {
+            if (!string.IsNullOrWhiteSpace(sourceFolder))
+            {
+                TemplateInfo templateInfo = getTemplateInfo(cmdPath, sourceFolder);
+                if (string.IsNullOrWhiteSpace(targetFolder))
+                {
+                    if (!string.IsNullOrWhiteSpace(templateInfo.DefaultTargetPath))
+                    {
+                        string defaultTargetFolder = Path.GetFullPath(templateInfo.DefaultTargetPath, Path.GetDirectoryName(sourceFolder) ?? "");
+                        tbDestinationFolderPath.Text = defaultTargetFolder;
+                    }
+                } else
+                {
+                    tbDestinationFolderPath.Text = targetFolder;
+                }
+
+                List<ParameterInfo> parameters = getParameterInfo(cmdPath, sourceFolder);
+                RenderForm(parameters);
+            }
+        }
+
+        private static List<ParameterInfo> getParameterInfo(string cmdPath, string sourceFolder)
         {
             string? command = Path.GetFullPath(cmdPath);
             string? commandParameters = "-sourceFolder \"" + sourceFolder + "\" -listParams json -nowait";
             string? workingDirectory = Path.GetDirectoryName(command);
             string? strOutput = ExecuteCommand(command, commandParameters, workingDirectory);
             List<ParameterInfo> parameters = JsonConvert.DeserializeObject<List<ParameterInfo>>(strOutput ?? "") ?? new List<ParameterInfo>();
-            RenderForm(parameters);
+            return parameters;
+        }
+
+        private static TemplateInfo getTemplateInfo(string cmdPath, string sourceFolder)
+        {
+            string? command = Path.GetFullPath(cmdPath);
+            string? commandParameters = "-sourceFolder \"" + sourceFolder + "\" -getTemplateInfo json -nowait";
+            string? workingDirectory = Path.GetDirectoryName(command);
+            string? strOutput = ExecuteCommand(command, commandParameters, workingDirectory);
+            TemplateInfo templateInfo = JsonConvert.DeserializeObject<TemplateInfo>(strOutput ?? "") ?? new TemplateInfo();
+            return templateInfo;
         }
 
         private void RenderForm(List<ParameterInfo> parameters)

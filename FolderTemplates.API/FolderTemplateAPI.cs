@@ -9,6 +9,7 @@ namespace FolderTemplates.API
     public class Template
     {
         public string? Name { get; set; }
+        public string? DefaultTargetPath { get; set; }
         public List<TemplateParameter> Parameters { get; set; } = new List<TemplateParameter>();
     }
 
