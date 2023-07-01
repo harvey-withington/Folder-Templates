@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FolderTemplates.Avalonia.Desktop": {
+      "commandName": "Project",
+      "commandLineArgs": "\"D:\\Folder Templates\\Test Files\\Templates\\TM1\\_template_bedrock {tm1ServerName}\" -targetFolder \"D:\\Folder Templates\""
+    }
+  }
+}

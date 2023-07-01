@@ -23,7 +23,7 @@ namespace FolderTemplates.API
         public string Match { get; set; }
         public bool ReplaceInFileNames { get; set; } = false; 
         public bool ReplaceInFiles { get; set; } = false;
-        public string? Value { get; set; } = null;
+        //public string? Value { get; set; } = null;
     }
 
     public class ReplaceParameter

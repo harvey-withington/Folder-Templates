@@ -21,5 +21,6 @@
         public string? Prompt { get; set; } = null;
         public string? Placeholder { get; set; } = null;
         public string? DefaultValue { get; set; } = null;
+        public string? Value { get; set; } = null;
     }
 }

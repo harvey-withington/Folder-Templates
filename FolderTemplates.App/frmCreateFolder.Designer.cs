@@ -165,6 +165,7 @@
             // 
             // splitContainer2
             // 
+            splitContainer2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             splitContainer2.Location = new Point(12, 63);
             splitContainer2.Name = "splitContainer2";
             splitContainer2.Orientation = Orientation.Horizontal;
@@ -183,6 +184,7 @@
             // 
             // cbExitImmediately
             // 
+            cbExitImmediately.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             cbExitImmediately.AutoSize = true;
             cbExitImmediately.Checked = true;
             cbExitImmediately.CheckState = CheckState.Checked;
@@ -213,7 +215,7 @@
             // 
             mnuOptions.DropDownItems.AddRange(new ToolStripItem[] { mnuAddSendTo, mnuRemoveSendTo });
             mnuOptions.Name = "mnuOptions";
-            mnuOptions.Size = new Size(180, 22);
+            mnuOptions.Size = new Size(116, 22);
             mnuOptions.Text = "Options";
             // 
             // mnuAddSendTo
@@ -233,7 +235,7 @@
             // mnuExit
             // 
             mnuExit.Name = "mnuExit";
-            mnuExit.Size = new Size(180, 22);
+            mnuExit.Size = new Size(116, 22);
             mnuExit.Text = "Exit";
             mnuExit.Click += exitToolStripMenuItem_Click;
             // 

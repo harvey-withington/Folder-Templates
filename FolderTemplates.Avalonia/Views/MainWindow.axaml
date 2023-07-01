@@ -1,0 +1,76 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:FolderTemplates.Avalonia.ViewModels"
+        x:DataType="vm:MainViewModel"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:FolderTemplates.Avalonia.Views"
+        mc:Ignorable="d"
+        d:DesignWidth="460" d:DesignHeight="360"
+        Width="460" Height="360"
+        x:Class="FolderTemplates.Avalonia.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Folder Templates">
+  <Design.DataContext>
+    <vm:MainViewModel />
+  </Design.DataContext>
+  <Window.Styles>
+    <Style Selector="TextBox">
+      <Setter Property="Margin" Value="2,2,2,2"/>
+    </Style>
+    <Style Selector="Button">
+      <Setter Property="Margin" Value="2,2,2,2"/>
+    </Style>
+  </Window.Styles>
+  <DockPanel LastChildFill="True">
+    <Menu DockPanel.Dock="Top">
+      <MenuItem Header="_File">
+        <MenuItem Header="_Options">
+          <MenuItem Header="_Add to Send To"/>
+          <MenuItem Header="_Remove from Send To"/>
+        </MenuItem>
+        <Separator/>
+        <MenuItem Header="_Exit"  Command="{Binding ExitApplication}"/>
+      </MenuItem>
+    </Menu>
+    <Grid DockPanel.Dock="Bottom" Margin="8,8,8,8" RowDefinitions="Auto,*,Auto">
+      <Grid Grid.Row="0" ColumnDefinitions="*,*">
+        <TextBox IsReadOnly="True" Grid.Column="0" Watermark="Click to select template folder" Text="{Binding SourcePath}"></TextBox>
+        <TextBox IsReadOnly="True" Grid.Column="1" Watermark="Click to select destination folder" Text="{Binding TargetPath}"></TextBox>
+      </Grid>
+      <Grid Grid.Row="1" RowDefinitions="*,5,*">
+        <ScrollViewer Grid.Row="0">
+          <StackPanel>
+            <ItemsControl ItemsSource="{Binding Parameters}">
+              <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                  <Grid ColumnDefinitions="*,*">
+                    <Label Grid.Column="0" Content="{Binding Prompt}"></Label>
+                    <TextBox Grid.Column="1" Text="{Binding Value}" Watermark="{Binding Placeholder}"></TextBox>
+                  </Grid>
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+          </StackPanel>
+        </ScrollViewer>
+        <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" />
+        <ScrollViewer Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+          <TextBlock Text="{Binding LogText}" 
+                   TextWrapping="Wrap"
+                   xml:space="preserve" 
+                   ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                   ScrollViewer.VerticalScrollBarVisibility="Auto" />
+        </ScrollViewer>
+      </Grid>
+      <Grid Grid.Row="2" ColumnDefinitions="*,Auto">
+        <StackPanel Grid.Column="0" Orientation="Horizontal">
+          <CheckBox IsChecked="{Binding ExitWhenComplete}">Exit When Complete</CheckBox>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Orientation="Horizontal">
+          <Button MinWidth="88" HorizontalContentAlignment="Center" Command="{Binding ExitApplication}">Close</Button>
+          <Button MinWidth="88" HorizontalContentAlignment="Center" Command="{Binding Process}">Process</Button>
+        </StackPanel>
+      </Grid>
+    </Grid>
+  </DockPanel>
+</Window>

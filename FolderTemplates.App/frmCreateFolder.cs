@@ -2,6 +2,7 @@ using System.Collections.Specialized;
 using System.Configuration;
 using System.Diagnostics;
 using FolderTemplates.CommandLine;
+using FolderTemplates.API.Console;
 using FolderTemplates.Data;
 using Microsoft.AspNetCore.Components;
 using Newtonsoft.Json;
@@ -11,7 +12,7 @@ namespace FolderTemplates.App
     public partial class frmCreateFolder : Form
     {
         private readonly NameValueCollection? appSettings;
-        ConsoleCommandLine cmd;
+        readonly ConsoleCommandLine cmd;
         private readonly string cmdPath;
         private readonly string shortcutName = "Process with Folder Templates";
 
@@ -49,7 +50,7 @@ namespace FolderTemplates.App
         {
             if (!string.IsNullOrWhiteSpace(sourceFolder))
             {
-                TemplateInfo templateInfo = getTemplateInfo(cmdPath, sourceFolder);
+                TemplateInfo templateInfo = FolderTemplatesConsoleAPI.getTemplateInfo(cmdPath, sourceFolder);
                 if (string.IsNullOrWhiteSpace(targetFolder))
                 {
                     if (!string.IsNullOrWhiteSpace(templateInfo.DefaultTargetPath))
@@ -57,34 +58,15 @@ namespace FolderTemplates.App
                         string defaultTargetFolder = Path.GetFullPath(templateInfo.DefaultTargetPath, Path.GetDirectoryName(sourceFolder) ?? "");
                         tbDestinationFolderPath.Text = defaultTargetFolder;
                     }
-                } else
+                }
+                else
                 {
                     tbDestinationFolderPath.Text = targetFolder;
                 }
 
-                List<ParameterInfo> parameters = getParameterInfo(cmdPath, sourceFolder);
+                List<ParameterInfo> parameters = FolderTemplatesConsoleAPI.getParameterInfo(cmdPath, sourceFolder);
                 RenderForm(parameters);
             }
-        }
-
-        private static List<ParameterInfo> getParameterInfo(string cmdPath, string sourceFolder)
-        {
-            string? command = Path.GetFullPath(cmdPath);
-            string? commandParameters = "-sourceFolder \"" + sourceFolder + "\" -listParams json -nowait";
-            string? workingDirectory = Path.GetDirectoryName(command);
-            string? strOutput = ExecuteCommand(command, commandParameters, workingDirectory);
-            List<ParameterInfo> parameters = JsonConvert.DeserializeObject<List<ParameterInfo>>(strOutput ?? "") ?? new List<ParameterInfo>();
-            return parameters;
-        }
-
-        private static TemplateInfo getTemplateInfo(string cmdPath, string sourceFolder)
-        {
-            string? command = Path.GetFullPath(cmdPath);
-            string? commandParameters = "-sourceFolder \"" + sourceFolder + "\" -getTemplateInfo json -nowait";
-            string? workingDirectory = Path.GetDirectoryName(command);
-            string? strOutput = ExecuteCommand(command, commandParameters, workingDirectory);
-            TemplateInfo templateInfo = JsonConvert.DeserializeObject<TemplateInfo>(strOutput ?? "") ?? new TemplateInfo();
-            return templateInfo;
         }
 
         private void RenderForm(List<ParameterInfo> parameters)
@@ -104,84 +86,6 @@ namespace FolderTemplates.App
                 row++;
             }
             tableLayoutPanel1.Focus();
-        }
-
-        private static string? ExecuteCommand(string command, string commandParameters, string? workingDirectory)
-        {
-            //Create process
-            System.Diagnostics.Process process = new();
-
-            //strCommand is path and file name of command to run
-            process.StartInfo.FileName = command;
-
-            //strCommandParameters are parameters to pass to program
-            process.StartInfo.Arguments = commandParameters;
-
-            process.StartInfo.UseShellExecute = false;
-
-            //Set output of program to be written to process output stream
-            process.StartInfo.RedirectStandardOutput = true;
-            process.StartInfo.CreateNoWindow = true;
-            process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-
-            //Optional
-            process.StartInfo.WorkingDirectory = workingDirectory;
-
-            //Start the process
-            process.Start();
-
-            //Get program output
-            string strOutput = process.StandardOutput.ReadToEnd();
-
-            //Wait for process to finish
-            process.WaitForExit();
-
-            return strOutput;
-        }
-
-        private static void ExecuteCommandAsync(string command, string commandParameters, string? workingDirectory, Control? ctrlOutput = null, EventHandler? onExited = null)
-        {
-            //Create process
-            System.Diagnostics.Process process = new();
-
-            //strCommand is path and file name of command to run
-            process.StartInfo.FileName = command;
-
-            //strCommandParameters are parameters to pass to program
-            process.StartInfo.Arguments = commandParameters;
-
-            process.StartInfo.UseShellExecute = false;
-
-            //Set output of program to be written to process output stream
-            process.StartInfo.RedirectStandardOutput = true;
-            process.StartInfo.CreateNoWindow = true;
-            process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-
-            //Optional
-            process.StartInfo.WorkingDirectory = workingDirectory;
-
-            if (ctrlOutput != null)
-            {
-                process.EnableRaisingEvents = true;
-                process.OutputDataReceived += new DataReceivedEventHandler((sender, e) =>
-                {
-                    if (!String.IsNullOrEmpty(e.Data))
-                        WriteDataToControl(e.Data, ctrlOutput);
-                });
-
-                process.ErrorDataReceived += new DataReceivedEventHandler((sender, e) =>
-                {
-                    if (!String.IsNullOrEmpty(e.Data))
-                        WriteDataToControl(e.Data, ctrlOutput);
-                });
-            }
-
-            if (onExited != null)
-                process.Exited += onExited;
-
-            //Start the process
-            process.Start();
-            process.BeginOutputReadLine();
         }
 
         private static void WriteDataToControl(string? Data, Control ctrl)
@@ -223,8 +127,12 @@ namespace FolderTemplates.App
                     string? val = parameters[param];
                     commandParameters += !string.IsNullOrWhiteSpace(val) ? " -" + param + " \"" + val + "\"" : "";
                 }
-
-            ExecuteCommandAsync(command, commandParameters, workingDirectory, this.tbOutput, new EventHandler((sender, e) =>
+            DataReceivedEventHandler dataReceiver = new((sender, e) =>
+                {
+                    if (!String.IsNullOrEmpty(e.Data))
+                        WriteDataToControl(e.Data, this.tbOutput);
+                });
+            FolderTemplatesConsoleAPI.ExecuteCommandAsync(command, commandParameters, workingDirectory, dataReceiver, new EventHandler((sender, e) =>
             {
                 this.BeginInvoke(new Action(() =>
                 {

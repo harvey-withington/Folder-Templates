@@ -34,6 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FolderTemplates.API.Console\FolderTemplates.API.Console.csproj" />
     <ProjectReference Include="..\FolderTemplates.CommandLine\FolderTemplates.CommandLine.csproj" />
     <ProjectReference Include="..\FolderTemplates.Data\FolderTemplates.Data.csproj" />
   </ItemGroup>
