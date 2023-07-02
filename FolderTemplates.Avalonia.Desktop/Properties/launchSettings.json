@@ -1,6 +1,14 @@
 {
   "profiles": {
-    "FolderTemplates.Avalonia.Desktop": {
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
+    },
+    "Source Param": {
+      "commandName": "Project",
+      "commandLineArgs": "\"D:\\Folder Templates\\Test Files\\Templates\\TM1\\_template_bedrock {tm1ServerName}\""
+    },
+    "Source & Target Param": {
       "commandName": "Project",
       "commandLineArgs": "\"D:\\Folder Templates\\Test Files\\Templates\\TM1\\_template_bedrock {tm1ServerName}\" -targetFolder \"D:\\Folder Templates\""
     }

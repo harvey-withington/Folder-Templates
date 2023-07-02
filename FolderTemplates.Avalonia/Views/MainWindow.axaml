@@ -35,8 +35,18 @@
     </Menu>
     <Grid DockPanel.Dock="Bottom" Margin="8,8,8,8" RowDefinitions="Auto,*,Auto">
       <Grid Grid.Row="0" ColumnDefinitions="*,*">
-        <TextBox IsReadOnly="True" Grid.Column="0" Watermark="Click to select template folder" Text="{Binding SourcePath}"></TextBox>
-        <TextBox IsReadOnly="True" Grid.Column="1" Watermark="Click to select destination folder" Text="{Binding TargetPath}"></TextBox>
+        <Grid Grid.Column="0" ColumnDefinitions="*,Auto">
+          <TextBox Grid.Column="0" IsReadOnly="True" 
+                   Watermark="Click to select template folder"
+                   Text="{Binding SourcePath}" />
+          <Button Grid.Column="1" Content=".." Command="{Binding SelectSourcePath}"></Button>
+        </Grid>
+        <Grid Grid.Column="1" ColumnDefinitions="*,Auto">
+          <TextBox Grid.Column="0" IsReadOnly="True"
+                 Watermark="Click to select destination folder"
+                 Text="{Binding TargetPath}" />
+          <Button Grid.Column="1" Content=".." Command="{Binding SelectTargetPath}"></Button>
+        </Grid>
       </Grid>
       <Grid Grid.Row="1" RowDefinitions="*,5,*">
         <ScrollViewer Grid.Row="0">

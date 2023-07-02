@@ -37,6 +37,8 @@ public partial class App : Application
                 appSettings = ConfigurationManager.AppSettings;
                 cmdPath = (appSettings != null && appSettings["cmdPath"] != null) ? appSettings["cmdPath"] ?? defaultCmdPath : defaultCmdPath;
 
+                vm.CommandPath = cmdPath;
+
                 cmd = new();
                 cmd.RegisterParameter(new CommandLineParameter("sourceFolder", false, "The path of the Template Folder to process"));
                 //cmd.RegisterParameter(new CommandLineParameter("templateFile", false, "The path of the Template Folder Definition file to apply"));
@@ -46,10 +48,8 @@ public partial class App : Application
                 if (cmd.ParsedSuccessfully)
                 {
                     // Get the source, target and template paths from supplied parameters
-                    vm.SourcePath = cmd["sourceFolder"].Exists ? cmd["sourceFolder"].Value : "";
                     vm.TargetPath = cmd["targetFolder"].Exists ? cmd["targetFolder"].Value : "";
-
-                    vm.LoadTemplate(cmdPath);
+                    vm.SourcePath = cmd["sourceFolder"].Exists ? cmd["sourceFolder"].Value : "";
                 }
 
                 // Create your window
