@@ -24,7 +24,7 @@ public partial class MainWindow : Window
 
             vm.RequestFolderDialog += (s, e) =>
             {
-                OpenFolderDialog dialog = new OpenFolderDialog();
+                OpenFolderDialog dialog = new();
                 var result = Task.Run(() => dialog.ShowAsync(this)).Result;
                 e.FolderPath = result;
             };

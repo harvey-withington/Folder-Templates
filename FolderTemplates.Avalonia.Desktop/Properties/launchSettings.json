@@ -11,6 +11,9 @@
     "Source & Target Param": {
       "commandName": "Project",
       "commandLineArgs": "\"D:\\Folder Templates\\Test Files\\Templates\\TM1\\_template_bedrock {tm1ServerName}\" -targetFolder \"D:\\Folder Templates\""
+    },
+    "No Param": {
+      "commandName": "Project"
     }
   }
 }

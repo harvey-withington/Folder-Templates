@@ -1,14 +1,9 @@
-﻿using ReactiveUI;
-using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using FolderTemplates.API.Console;
+﻿using FolderTemplates.API.Console;
 using FolderTemplates.Data;
-using System.Linq;
-using Avalonia.Platform.Storage;
-using System.Diagnostics;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+using ReactiveUI;
+using System;
+using System.Collections.ObjectModel;
+using System.IO;
 
 namespace FolderTemplates.Avalonia.ViewModels;
 

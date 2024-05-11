@@ -21,11 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FolderTemplates.Data", "Fol
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "FolderTemplates.Setup", "FolderTemplates.Setup\FolderTemplates.Setup.vdproj", "{1A982362-B654-4009-9C41-EB68C4729778}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FolderTemplates.Avalonia", "FolderTemplates.Avalonia\FolderTemplates.Avalonia.csproj", "{C164975D-40C1-45C0-92CC-3499CA899005}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FolderTemplates.Avalonia.Desktop", "FolderTemplates.Avalonia.Desktop\FolderTemplates.Avalonia.Desktop.csproj", "{96A2C6BD-F7AE-4F1D-88FA-A66F987B0A95}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FolderTemplates.API.Console", "FolderTemplates.API.Console\FolderTemplates.API.Console.csproj", "{DBF4D948-46B7-49C9-A88D-993C7A6E9C67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FolderTemplates.API.Console", "FolderTemplates.API.Console\FolderTemplates.API.Console.csproj", "{DBF4D948-46B7-49C9-A88D-993C7A6E9C67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -127,38 +123,6 @@ Global
 		{1A982362-B654-4009-9C41-EB68C4729778}.Release|ARM64.ActiveCfg = Release
 		{1A982362-B654-4009-9C41-EB68C4729778}.Release|x64.ActiveCfg = Release
 		{1A982362-B654-4009-9C41-EB68C4729778}.Release|x86.ActiveCfg = Release
-		{C164975D-40C1-45C0-92CC-3499CA899005}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C164975D-40C1-45C0-92CC-3499CA899005}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C164975D-40C1-45C0-92CC-3499CA899005}.Debug|ARM64.ActiveCfg = Debug|Any CPU
-		{C164975D-40C1-45C0-92CC-3499CA899005}.Debug|ARM64.Build.0 = Debug|Any CPU
-		{C164975D-40C1-45C0-92CC-3499CA899005}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{C164975D-40C1-45C0-92CC-3499CA899005}.Debug|x64.Build.0 = Debug|Any CPU
-		{C164975D-40C1-45C0-92CC-3499CA899005}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{C164975D-40C1-45C0-92CC-3499CA899005}.Debug|x86.Build.0 = Debug|Any CPU
-		{C164975D-40C1-45C0-92CC-3499CA899005}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C164975D-40C1-45C0-92CC-3499CA899005}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C164975D-40C1-45C0-92CC-3499CA899005}.Release|ARM64.ActiveCfg = Release|Any CPU
-		{C164975D-40C1-45C0-92CC-3499CA899005}.Release|ARM64.Build.0 = Release|Any CPU
-		{C164975D-40C1-45C0-92CC-3499CA899005}.Release|x64.ActiveCfg = Release|Any CPU
-		{C164975D-40C1-45C0-92CC-3499CA899005}.Release|x64.Build.0 = Release|Any CPU
-		{C164975D-40C1-45C0-92CC-3499CA899005}.Release|x86.ActiveCfg = Release|Any CPU
-		{C164975D-40C1-45C0-92CC-3499CA899005}.Release|x86.Build.0 = Release|Any CPU
-		{96A2C6BD-F7AE-4F1D-88FA-A66F987B0A95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{96A2C6BD-F7AE-4F1D-88FA-A66F987B0A95}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{96A2C6BD-F7AE-4F1D-88FA-A66F987B0A95}.Debug|ARM64.ActiveCfg = Debug|Any CPU
-		{96A2C6BD-F7AE-4F1D-88FA-A66F987B0A95}.Debug|ARM64.Build.0 = Debug|Any CPU
-		{96A2C6BD-F7AE-4F1D-88FA-A66F987B0A95}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{96A2C6BD-F7AE-4F1D-88FA-A66F987B0A95}.Debug|x64.Build.0 = Debug|Any CPU
-		{96A2C6BD-F7AE-4F1D-88FA-A66F987B0A95}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{96A2C6BD-F7AE-4F1D-88FA-A66F987B0A95}.Debug|x86.Build.0 = Debug|Any CPU
-		{96A2C6BD-F7AE-4F1D-88FA-A66F987B0A95}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{96A2C6BD-F7AE-4F1D-88FA-A66F987B0A95}.Release|Any CPU.Build.0 = Release|Any CPU
-		{96A2C6BD-F7AE-4F1D-88FA-A66F987B0A95}.Release|ARM64.ActiveCfg = Release|Any CPU
-		{96A2C6BD-F7AE-4F1D-88FA-A66F987B0A95}.Release|ARM64.Build.0 = Release|Any CPU
-		{96A2C6BD-F7AE-4F1D-88FA-A66F987B0A95}.Release|x64.ActiveCfg = Release|Any CPU
-		{96A2C6BD-F7AE-4F1D-88FA-A66F987B0A95}.Release|x64.Build.0 = Release|Any CPU
-		{96A2C6BD-F7AE-4F1D-88FA-A66F987B0A95}.Release|x86.ActiveCfg = Release|Any CPU
-		{96A2C6BD-F7AE-4F1D-88FA-A66F987B0A95}.Release|x86.Build.0 = Release|Any CPU
 		{DBF4D948-46B7-49C9-A88D-993C7A6E9C67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DBF4D948-46B7-49C9-A88D-993C7A6E9C67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBF4D948-46B7-49C9-A88D-993C7A6E9C67}.Debug|ARM64.ActiveCfg = Debug|Any CPU
