@@ -1,7 +1,0 @@
-This is a text file because it has the extension .ft$, we can replace variables inside the file!
-
-Here is an example: 
-
-Project Name: {{$projectName}}
-Project Version: {{$projectVersion}}
-{{$notFound}}
