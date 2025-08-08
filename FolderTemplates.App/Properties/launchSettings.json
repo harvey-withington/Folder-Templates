@@ -1,27 +1,19 @@
 {
   "profiles": {
-    "FolderTemplates.App": {
+    "no parameters": {
       "commandName": "Project"
     },
-    "sourceFolder": {
+    "folder empty_template": {
+      "commandName": "Project",
+      "commandLineArgs": "\"S:\\oDrive\\Google Drive - Mandela Daze\\Harv's Code Team\\Content\\Projects\\Extension - Folder Templates\\Test\\Folder Templates\\empty_template\""
+    },
+    "sourceFolder livestream": {
       "commandName": "Project",
       "commandLineArgs": "-sourceFolder \"S:\\oDrive\\Google Drive - Mandela Daze\\Harv's Code Team\\Content\\Projects\\Extension - Folder Templates\\Test\\Folder Templates\\_livestream_template#{livestreamNumber} - {recordingDate}\""
     },
-    "folder & targetFolder": {
-      "commandName": "Project",
-      "commandLineArgs": "\"D:\\Folder Templates\\Test Files\\_Basic Template - {projectName} - {projectVersion}\" -targetFolder \"D:\\Folder Templates\\Test Results\""
-    },
-    "folder & defaultFargetPath": {
-      "commandName": "Project",
-      "commandLineArgs": "\"D:\\Folder Templates\\Test Files\\Templates\\TM1\\_template_bedrock {tm1ServerName}\""
-    },
-    "folder & target & default": {
+    "folder livestream & targetFolder": {
       "commandName": "Project",
       "commandLineArgs": "\"S:\\oDrive\\Google Drive - Mandela Daze\\Harv's Code Team\\Content\\Projects\\Extension - Folder Templates\\Test\\Folder Templates\\_livestream_template#{livestreamNumber} - {recordingDate}\" -targetFolder \"S:\\oDrive\\Google Drive - Mandela Daze\\Harv's Code Team\\Content\\Projects\\Extension - Folder Templates\\Test\\Results\""
-    },
-    "emptyFolder": {
-      "commandName": "Project",
-      "commandLineArgs": "-sourceFolder \"S:\\oDrive\\Google Drive - Mandela Daze\\Harv's Code Team\\Content\\Projects\\Extension - Folder Templates\\Test\\Folder Templates\\empty_template\""
     }
   }
 }
