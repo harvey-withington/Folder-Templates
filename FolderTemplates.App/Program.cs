@@ -20,23 +20,26 @@ namespace FolderTemplates.App
 
             ConsoleCommandLine cmd = new();
             cmd.RegisterParameter(new CommandLineParameter("sourceFolder", true, "The path of the Template Folder to process"));
+            cmd.RegisterParameter(new CommandLineParameter("targetFolder", false, "The path of the folder in which to generate the template result"));
             cmd.Parse(args ?? Array.Empty<string>(), true, "sourceFolder");
 
             if (cmd.ParsedSuccessfully)
             {
-                string folderPath = (cmd["sourceFolder"].Exists ? cmd["sourceFolder"].Value : "") ?? "";
-                string ftFolderPath = Path.Combine(folderPath, ".ft");
+                string sourcePath = (cmd["sourceFolder"].Exists ? cmd["sourceFolder"].Value : "") ?? "";
+                string? targetPath = (cmd["targetFolder"].Exists ? cmd["targetFolder"].Value : null);
+                string ftFolderPath = Path.Combine(sourcePath, ".ft");
                 string templatePath = Path.Combine(ftFolderPath, "template.json");
 
                 if (!Directory.Exists(ftFolderPath) || !File.Exists(templatePath))
                 {
                     // Template doesn't exist, launch template creation form
-                    Application.Run(new frmCreateTemplate(folderPath));
+                    Application.Run(new frmCreateTemplate(sourcePath));
                     return;
+                } else
+                {
+                    Application.Run(new frmCreateFolder(sourcePath, targetPath));
                 }
             }
-
-            Application.Run(new frmCreateFolder(args ?? Array.Empty<string>()));
         }
     }
 }

@@ -1,7 +1,6 @@
 using System.Collections.Specialized;
 using System.Configuration;
 using System.Diagnostics;
-using FolderTemplates.CommandLine;
 using FolderTemplates.Data;
 using Microsoft.AspNetCore.Components;
 using Newtonsoft.Json;
@@ -11,11 +10,10 @@ namespace FolderTemplates.App
     public partial class frmCreateFolder : Form
     {
         private readonly NameValueCollection? appSettings;
-        ConsoleCommandLine cmd;
         private readonly string cmdPath;
         private readonly string shortcutName = "Process with Folder Templates";
 
-        public frmCreateFolder(string[] args)
+        public frmCreateFolder(string? sourcePath, string? targetPath)
         {
             InitializeComponent();
 
@@ -27,22 +25,10 @@ namespace FolderTemplates.App
             appSettings = ConfigurationManager.AppSettings;
             cmdPath = (appSettings != null && appSettings["cmdPath"] != null) ? appSettings["cmdPath"] ?? defaultCmdPath : defaultCmdPath;
 
-            cmd = new();
-            cmd.RegisterParameter(new CommandLineParameter("sourceFolder", false, "The path of the Template Folder to process"));
-            //cmd.RegisterParameter(new CommandLineParameter("templateFile", false, "The path of the Template Folder Definition file to apply"));
-            cmd.RegisterParameter(new CommandLineParameter("targetFolder", false, "The path of the folder in which to generate the template result"));
-            cmd.Parse(args ?? Array.Empty<string>(), true, "sourceFolder");
+            tbTemplateFolderPath.Text = sourcePath;
+            tbDestinationFolderPath.Text = targetPath;
 
-            if (cmd.ParsedSuccessfully)
-            {
-                // Get the source, target and template paths from supplied parameters
-                string? initialSourcePath = cmd["sourceFolder"].Exists ? cmd["sourceFolder"].Value : "";
-                string? initialTargetPath = cmd["targetFolder"].Exists ? cmd["targetFolder"].Value : "";
-                tbTemplateFolderPath.Text = initialSourcePath;
-                tbDestinationFolderPath.Text = initialTargetPath;
-
-                CreateForm(cmdPath, initialSourcePath, initialTargetPath);
-            }
+            CreateForm(cmdPath, sourcePath, targetPath);
         }
 
         private void CreateForm(string cmdPath, string? sourceFolder, string? targetFolder = null)

@@ -7,7 +7,6 @@ using FolderTemplates.CommandLine;
 
 namespace FolderTemplates.App
 {
-
     public partial class frmCreateTemplate : Form
     {
         string _sourceFolderPath = string.Empty;
