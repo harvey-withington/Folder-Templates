@@ -21,8 +21,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FolderTemplates.Data", "Fol
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "FolderTemplates.Setup", "FolderTemplates.Setup\FolderTemplates.Setup.vdproj", "{1A982362-B654-4009-9C41-EB68C4729778}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FolderTemplates.API.Console", "FolderTemplates.API.Console\FolderTemplates.API.Console.csproj", "{DBF4D948-46B7-49C9-A88D-993C7A6E9C67}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -126,9 +124,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{688B575B-FD16-46FC-BE6F-8F0DAF451B6F} = {091252B9-1EA4-4BA1-AF86-0380598EC25C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {79A00B66-D541-46BE-9C5B-B94EB4BA050D}
