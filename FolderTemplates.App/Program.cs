@@ -31,7 +31,7 @@ namespace FolderTemplates.App
                 if (!Directory.Exists(ftFolderPath) || !File.Exists(templatePath))
                 {
                     // Template doesn't exist, launch template creation form
-                    Application.Run(new frmCreateTemplate(args ?? Array.Empty<string>()));
+                    Application.Run(new frmCreateTemplate(folderPath));
                     return;
                 }
             }

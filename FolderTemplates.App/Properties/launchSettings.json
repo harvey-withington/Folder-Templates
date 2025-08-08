@@ -17,7 +17,6 @@
     },
     "folder & target & default": {
       "commandName": "Project",
-      "commandLineArgs": "\"D:\\Folder Templates\\Test Files\\Templates\\TM1\\_template_bedrock {tm1ServerName}\" -targetFolder \"D:\\Folder Templates\""
       "commandLineArgs": "\"S:\\oDrive\\Google Drive - Mandela Daze\\Harv's Code Team\\Content\\Projects\\Extension - Folder Templates\\Test\\Folder Templates\\_livestream_template#{livestreamNumber} - {recordingDate}\" -targetFolder \"S:\\oDrive\\Google Drive - Mandela Daze\\Harv's Code Team\\Content\\Projects\\Extension - Folder Templates\\Test\\Results\""
     },
     "emptyFolder": {

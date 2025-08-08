@@ -10,21 +10,11 @@ namespace FolderTemplates.App
 
     public partial class frmCreateTemplate : Form
     {
-        readonly ConsoleCommandLine cmd;
-        string sourceFolderPath = string.Empty;
-        public frmCreateTemplate(string[] args)
+        string _sourceFolderPath = string.Empty;
+        public frmCreateTemplate(string sourceFolderPath)
         {
             InitializeComponent();
-
-            cmd = new();
-            cmd.RegisterParameter(new CommandLineParameter("sourceFolder", true, "The path of the Template Folder to process"));
-            cmd.Parse(args ?? Array.Empty<string>(), true, "sourceFolder");
-
-            if (cmd.ParsedSuccessfully)
-            {
-                // Get the source, target and template paths from supplied parameters
-                sourceFolderPath = (cmd["sourceFolder"].Exists ? cmd["sourceFolder"].Value : "") ?? "";
-            }
+            _sourceFolderPath = sourceFolderPath;
         }
 
         private void RefreshParametersGrid()
@@ -120,7 +110,7 @@ namespace FolderTemplates.App
             string templateName = txtTemplateName.Text;
             string templateDescription = txtTemplateDescription.Text;
             List<TemplateParameter> parameters = GetTemplateParameters();
-            CreateTemplate(templateName, templateDescription, parameters, sourceFolderPath);
+            CreateTemplate(templateName, templateDescription, parameters, _sourceFolderPath);
 
             MessageBox.Show("Template saved successfully!", "Success",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
