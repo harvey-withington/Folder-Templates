@@ -1,6 +1,8 @@
 ﻿using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
+using System.Globalization;
 using System.Text.Json;
 using System.Windows.Forms;
 using FolderTemplates.CommandLine;
@@ -20,6 +22,8 @@ namespace FolderTemplates.App
         {
             dgvParameters.DataSource = null;
             dgvParameters.DataSource = new BindingList<TemplateParameter>(parameters);
+
+            dgvParameters.Columns["Type"].Visible = false;
         }
 
         public List<TemplateParameter> GetTemplateParameters()
@@ -27,8 +31,8 @@ namespace FolderTemplates.App
             return new List<TemplateParameter>(parameters);
         }
 
-        private static bool CreateTemplate(string templateName, string templateDescription,
-                                     List<TemplateParameter> parameters, string sourceFolderPath)
+        private static bool CreateTemplate(string sourceFolderPath, string templateName, string? templateDescription,
+                                     string? templateDefaultTargetPath, List<TemplateParameter> parameters)
         {
             try
             {
@@ -54,6 +58,7 @@ namespace FolderTemplates.App
                 {
                     Name = templateName,
                     Description = templateDescription,
+                    DefaultTargetPath = templateDefaultTargetPath,
                     Parameters = parameters
                 };
 
@@ -108,8 +113,9 @@ namespace FolderTemplates.App
             // TODO: Save template and parameters to storage
             string templateName = txtTemplateName.Text;
             string templateDescription = txtTemplateDescription.Text;
+            string templateDefaultTargetPath = txtDefaultTargetPath.Text;
             List<TemplateParameter> parameters = GetTemplateParameters();
-            CreateTemplate(templateName, templateDescription, parameters, _sourceFolderPath);
+            CreateTemplate(_sourceFolderPath, templateName, templateDescription, templateDefaultTargetPath, parameters);
 
             MessageBox.Show("Template saved successfully!", "Success",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -121,6 +127,47 @@ namespace FolderTemplates.App
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        private void dgvParameters_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewCellStyle styleDisabled = new DataGridViewCellStyle();
+            styleDisabled.BackColor = SystemColors.Control;
+            styleDisabled.ForeColor = SystemColors.ControlDark;
+
+            foreach (DataGridViewRow row in dgvParameters.Rows)
+            {
+                row.Cells["Type"].ReadOnly = true;
+                row.Cells["Type"].Value = "Text";
+                row.Cells["Match"].ReadOnly = !string.IsNullOrEmpty(row.Cells["Name"].Value?.ToString() ?? string.Empty);
+                row.Cells["Name"].ReadOnly = !string.IsNullOrEmpty(row.Cells["Match"].Value?.ToString() ?? string.Empty);
+                row.Cells["Prompt"].ReadOnly = !string.IsNullOrEmpty(row.Cells["Match"].Value?.ToString() ?? string.Empty);
+                row.Cells["Placeholder"].ReadOnly = !string.IsNullOrEmpty(row.Cells["Match"].Value?.ToString() ?? string.Empty);
+
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    cell.Style = cell.ReadOnly ? styleDisabled : dgvParameters.DefaultCellStyle;
+                }
+            }
+        }
+
+        private void dgvParameters_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                return;
+
+            if (e.Value == null || e.Value == DBNull.Value)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All
+                        & ~(DataGridViewPaintParts.ContentForeground));
+
+                var font = new Font(e.CellStyle.Font, FontStyle.Regular);
+                var color = ((DataGridView)sender).SelectedCells.Contains(((DataGridView)sender)[e.ColumnIndex, e.RowIndex]) ? Color.White : e.CellStyle.ForeColor;
+
+                TextRenderer.DrawText(e.Graphics, "--", font, e.CellBounds, color, TextFormatFlags.Left | TextFormatFlags.VerticalCenter);
+
+                e.Handled = true;
+            }
         }
     }
 }

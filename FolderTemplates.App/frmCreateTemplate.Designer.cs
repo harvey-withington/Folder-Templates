@@ -49,105 +49,138 @@ namespace FolderTemplates.App
             lblName = new Label();
             lblDescription = new Label();
             lblParameters = new Label();
+            lblTargetPath = new Label();
+            txtDefaultTargetPath = new TextBox();
             ((ISupportInitialize)dgvParameters).BeginInit();
             SuspendLayout();
             // 
             // txtTemplateName
             // 
-            txtTemplateName.Location = new Point(177, 12);
+            txtTemplateName.Location = new Point(202, 16);
+            txtTemplateName.Margin = new Padding(3, 4, 3, 4);
             txtTemplateName.Name = "txtTemplateName";
-            txtTemplateName.Size = new Size(273, 23);
+            txtTemplateName.Size = new Size(277, 27);
             txtTemplateName.TabIndex = 1;
             // 
             // txtTemplateDescription
             // 
-            txtTemplateDescription.Location = new Point(177, 42);
+            txtTemplateDescription.Location = new Point(202, 56);
+            txtTemplateDescription.Margin = new Padding(3, 4, 3, 4);
+            txtTemplateDescription.Multiline = true;
             txtTemplateDescription.Name = "txtTemplateDescription";
-            txtTemplateDescription.Size = new Size(273, 23);
-            txtTemplateDescription.TabIndex = 3;
+            txtTemplateDescription.Size = new Size(751, 63);
+            txtTemplateDescription.TabIndex = 5;
             // 
             // dgvParameters
             // 
             dgvParameters.AllowUserToAddRows = false;
             dgvParameters.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvParameters.BackgroundColor = SystemColors.Control;
-            dgvParameters.Location = new Point(20, 95);
+            dgvParameters.ColumnHeadersHeight = 29;
+            dgvParameters.Location = new Point(23, 151);
+            dgvParameters.Margin = new Padding(3, 4, 3, 4);
             dgvParameters.Name = "dgvParameters";
-            dgvParameters.Size = new Size(814, 228);
-            dgvParameters.TabIndex = 5;
+            dgvParameters.RowHeadersWidth = 51;
+            dgvParameters.Size = new Size(930, 280);
+            dgvParameters.TabIndex = 7;
+            dgvParameters.CellPainting += dgvParameters_CellPainting;
+            dgvParameters.CellValueChanged += dgvParameters_CellValueChanged;
             // 
             // btnAddParameter
             // 
             btnAddParameter.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnAddParameter.Location = new Point(21, 329);
+            btnAddParameter.Location = new Point(24, 439);
+            btnAddParameter.Margin = new Padding(3, 4, 3, 4);
             btnAddParameter.Name = "btnAddParameter";
-            btnAddParameter.Size = new Size(124, 23);
-            btnAddParameter.TabIndex = 6;
+            btnAddParameter.Size = new Size(142, 31);
+            btnAddParameter.TabIndex = 8;
             btnAddParameter.Text = "Add Parameter";
             btnAddParameter.Click += btnAddParameter_Click;
             // 
             // btnRemoveParameter
             // 
             btnRemoveParameter.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnRemoveParameter.Location = new Point(151, 329);
+            btnRemoveParameter.Location = new Point(173, 439);
+            btnRemoveParameter.Margin = new Padding(3, 4, 3, 4);
             btnRemoveParameter.Name = "btnRemoveParameter";
-            btnRemoveParameter.Size = new Size(129, 23);
-            btnRemoveParameter.TabIndex = 7;
+            btnRemoveParameter.Size = new Size(147, 31);
+            btnRemoveParameter.TabIndex = 9;
             btnRemoveParameter.Text = "Remove Parameter";
             btnRemoveParameter.Click += btnRemoveParameter_Click;
             // 
             // btnSave
             // 
             btnSave.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnSave.Location = new Point(731, 358);
+            btnSave.Location = new Point(835, 477);
+            btnSave.Margin = new Padding(3, 4, 3, 4);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(103, 23);
-            btnSave.TabIndex = 8;
+            btnSave.Size = new Size(118, 31);
+            btnSave.TabIndex = 10;
             btnSave.Text = "Save";
             btnSave.Click += btnSave_Click;
             // 
             // btnCancel
             // 
             btnCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnCancel.Location = new Point(622, 358);
+            btnCancel.Location = new Point(711, 477);
+            btnCancel.Margin = new Padding(3, 4, 3, 4);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(103, 23);
-            btnCancel.TabIndex = 9;
+            btnCancel.Size = new Size(118, 31);
+            btnCancel.TabIndex = 11;
             btnCancel.Text = "Cancel";
             btnCancel.Click += btnCancel_Click;
             // 
             // lblName
             // 
             lblName.AutoSize = true;
-            lblName.Location = new Point(20, 20);
+            lblName.Location = new Point(24, 19);
             lblName.Name = "lblName";
-            lblName.Size = new Size(94, 15);
+            lblName.Size = new Size(118, 20);
             lblName.TabIndex = 0;
             lblName.Text = "Template Name:";
             // 
             // lblDescription
             // 
             lblDescription.AutoSize = true;
-            lblDescription.Location = new Point(20, 50);
+            lblDescription.Location = new Point(24, 59);
             lblDescription.Name = "lblDescription";
-            lblDescription.Size = new Size(122, 15);
-            lblDescription.TabIndex = 2;
+            lblDescription.Size = new Size(154, 20);
+            lblDescription.TabIndex = 4;
             lblDescription.Text = "Template Description:";
             // 
             // lblParameters
             // 
             lblParameters.AutoSize = true;
-            lblParameters.Location = new Point(21, 77);
+            lblParameters.Location = new Point(23, 127);
             lblParameters.Name = "lblParameters";
-            lblParameters.Size = new Size(121, 15);
-            lblParameters.TabIndex = 4;
+            lblParameters.Size = new Size(151, 20);
+            lblParameters.TabIndex = 6;
             lblParameters.Text = "Template Parameters:";
+            // 
+            // lblTargetPath
+            // 
+            lblTargetPath.AutoSize = true;
+            lblTargetPath.Location = new Point(541, 19);
+            lblTargetPath.Name = "lblTargetPath";
+            lblTargetPath.Size = new Size(85, 20);
+            lblTargetPath.TabIndex = 2;
+            lblTargetPath.Text = "Target Path:";
+            // 
+            // txtDefaultTargetPath
+            // 
+            txtDefaultTargetPath.Location = new Point(673, 16);
+            txtDefaultTargetPath.Margin = new Padding(3, 4, 3, 4);
+            txtDefaultTargetPath.Name = "txtDefaultTargetPath";
+            txtDefaultTargetPath.Size = new Size(277, 27);
+            txtDefaultTargetPath.TabIndex = 3;
             // 
             // frmCreateTemplate
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(848, 393);
+            ClientSize = new Size(969, 524);
+            Controls.Add(lblTargetPath);
+            Controls.Add(txtDefaultTargetPath);
             Controls.Add(lblName);
             Controls.Add(txtTemplateName);
             Controls.Add(lblDescription);
@@ -158,7 +191,8 @@ namespace FolderTemplates.App
             Controls.Add(btnRemoveParameter);
             Controls.Add(btnSave);
             Controls.Add(btnCancel);
-            MinimumSize = new Size(471, 294);
+            Margin = new Padding(3, 4, 3, 4);
+            MinimumSize = new Size(536, 376);
             Name = "frmCreateTemplate";
             Text = "Create Template";
             ((ISupportInitialize)dgvParameters).EndInit();
@@ -171,5 +205,7 @@ namespace FolderTemplates.App
         private Label lblName;
         private Label lblDescription;
         private Label lblParameters;
+        private Label lblTargetPath;
+        private TextBox txtDefaultTargetPath;
     }
 }

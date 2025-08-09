@@ -5,7 +5,7 @@
     },
     "folder empty_template": {
       "commandName": "Project",
-      "commandLineArgs": "\"S:\\oDrive\\Google Drive - Mandela Daze\\Harv's Code Team\\Content\\Projects\\Extension - Folder Templates\\Test\\Folder Templates\\empty_template\""
+      "commandLineArgs": "\"S:\\oDrive\\Google Drive - Mandela Daze\\Harv's Code Team\\Content\\Projects\\Extension - Folder Templates\\Test\\Folder Templates\\_empty_template_{name}\""
     },
     "sourceFolder livestream": {
       "commandName": "Project",
