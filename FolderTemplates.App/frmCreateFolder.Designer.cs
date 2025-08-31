@@ -45,6 +45,7 @@
             mnuAddSendTo = new ToolStripMenuItem();
             mnuRemoveSendTo = new ToolStripMenuItem();
             mnuExit = new ToolStripMenuItem();
+            btnEditTemplate = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -65,11 +66,12 @@
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle());
-            tableLayoutPanel1.Location = new Point(3, 3);
+            tableLayoutPanel1.Location = new Point(3, 4);
+            tableLayoutPanel1.Margin = new Padding(3, 4, 3, 4);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.Size = new Size(414, 24);
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 32F));
+            tableLayoutPanel1.Size = new Size(594, 32);
             tableLayoutPanel1.TabIndex = 3;
             // 
             // panel1
@@ -78,17 +80,19 @@
             panel1.Controls.Add(tableLayoutPanel1);
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(420, 107);
+            panel1.Size = new Size(601, 164);
             panel1.TabIndex = 7;
             // 
             // btnCancel
             // 
             btnCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnCancel.DialogResult = DialogResult.Cancel;
-            btnCancel.Location = new Point(276, 286);
+            btnCancel.Location = new Point(305, 425);
+            btnCancel.Margin = new Padding(3, 4, 3, 4);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(75, 23);
+            btnCancel.Size = new Size(86, 31);
             btnCancel.TabIndex = 6;
             btnCancel.Text = "Close";
             btnCancel.UseVisualStyleBackColor = true;
@@ -98,9 +102,10 @@
             // 
             btnProcess.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnProcess.DialogResult = DialogResult.OK;
-            btnProcess.Location = new Point(357, 286);
+            btnProcess.Location = new Point(530, 425);
+            btnProcess.Margin = new Padding(3, 4, 3, 4);
             btnProcess.Name = "btnProcess";
-            btnProcess.Size = new Size(75, 23);
+            btnProcess.Size = new Size(86, 31);
             btnProcess.TabIndex = 5;
             btnProcess.Text = "Process";
             btnProcess.UseVisualStyleBackColor = true;
@@ -109,11 +114,12 @@
             // tbTemplateFolderPath
             // 
             tbTemplateFolderPath.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            tbTemplateFolderPath.Location = new Point(3, 4);
+            tbTemplateFolderPath.Location = new Point(3, 5);
+            tbTemplateFolderPath.Margin = new Padding(3, 4, 3, 4);
             tbTemplateFolderPath.Name = "tbTemplateFolderPath";
             tbTemplateFolderPath.PlaceholderText = "Click to select template folder";
             tbTemplateFolderPath.ReadOnly = true;
-            tbTemplateFolderPath.Size = new Size(203, 23);
+            tbTemplateFolderPath.Size = new Size(228, 27);
             tbTemplateFolderPath.TabIndex = 1;
             tbTemplateFolderPath.Click += tbTemplateFolderPath_Click;
             tbTemplateFolderPath.KeyPress += tbTemplateFolderPath_KeyPress;
@@ -121,11 +127,12 @@
             // tbDestinationFolderPath
             // 
             tbDestinationFolderPath.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            tbDestinationFolderPath.Location = new Point(3, 4);
+            tbDestinationFolderPath.Location = new Point(3, 5);
+            tbDestinationFolderPath.Margin = new Padding(3, 4, 3, 4);
             tbDestinationFolderPath.Name = "tbDestinationFolderPath";
             tbDestinationFolderPath.PlaceholderText = "Click to select destination folder";
             tbDestinationFolderPath.ReadOnly = true;
-            tbDestinationFolderPath.Size = new Size(201, 23);
+            tbDestinationFolderPath.Size = new Size(290, 27);
             tbDestinationFolderPath.TabIndex = 2;
             tbDestinationFolderPath.Click += tbDestinationFolderPath_Click;
             tbDestinationFolderPath.KeyPress += tbDestinationFolderPath_KeyPress;
@@ -134,7 +141,8 @@
             // 
             splitContainer1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             splitContainer1.IsSplitterFixed = true;
-            splitContainer1.Location = new Point(12, 27);
+            splitContainer1.Location = new Point(14, 36);
+            splitContainer1.Margin = new Padding(3, 4, 3, 4);
             splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -144,9 +152,10 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(tbDestinationFolderPath);
-            splitContainer1.Size = new Size(420, 30);
-            splitContainer1.SplitterDistance = 209;
+            splitContainer1.Size = new Size(601, 40);
+            splitContainer1.SplitterDistance = 267;
             splitContainer1.SplitterIncrement = 8;
+            splitContainer1.SplitterWidth = 5;
             splitContainer1.TabIndex = 11;
             splitContainer1.TabStop = false;
             // 
@@ -155,17 +164,20 @@
             tbOutput.BorderStyle = BorderStyle.None;
             tbOutput.Dock = DockStyle.Fill;
             tbOutput.Location = new Point(0, 0);
+            tbOutput.Margin = new Padding(3, 4, 3, 4);
             tbOutput.Multiline = true;
             tbOutput.Name = "tbOutput";
             tbOutput.ReadOnly = true;
             tbOutput.ScrollBars = ScrollBars.Vertical;
-            tbOutput.Size = new Size(420, 106);
+            tbOutput.Size = new Size(601, 164);
             tbOutput.TabIndex = 8;
             tbOutput.TabStop = false;
             // 
             // splitContainer2
             // 
-            splitContainer2.Location = new Point(12, 63);
+            splitContainer2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            splitContainer2.Location = new Point(14, 84);
+            splitContainer2.Margin = new Padding(3, 4, 3, 4);
             splitContainer2.Name = "splitContainer2";
             splitContainer2.Orientation = Orientation.Horizontal;
             // 
@@ -176,29 +188,34 @@
             // splitContainer2.Panel2
             // 
             splitContainer2.Panel2.Controls.Add(tbOutput);
-            splitContainer2.Size = new Size(420, 217);
-            splitContainer2.SplitterDistance = 107;
+            splitContainer2.Size = new Size(601, 333);
+            splitContainer2.SplitterDistance = 164;
+            splitContainer2.SplitterWidth = 5;
             splitContainer2.TabIndex = 13;
             splitContainer2.TabStop = false;
             // 
             // cbExitImmediately
             // 
+            cbExitImmediately.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             cbExitImmediately.AutoSize = true;
             cbExitImmediately.Checked = true;
             cbExitImmediately.CheckState = CheckState.Checked;
-            cbExitImmediately.Location = new Point(12, 290);
+            cbExitImmediately.Location = new Point(17, 429);
+            cbExitImmediately.Margin = new Padding(3, 4, 3, 4);
             cbExitImmediately.Name = "cbExitImmediately";
-            cbExitImmediately.Size = new Size(134, 19);
+            cbExitImmediately.Size = new Size(137, 24);
             cbExitImmediately.TabIndex = 4;
-            cbExitImmediately.Text = "Exit When Complete";
+            cbExitImmediately.Text = "Exit When Done";
             cbExitImmediately.UseVisualStyleBackColor = true;
             // 
             // menuStrip1
             // 
+            menuStrip1.ImageScalingSize = new Size(20, 20);
             menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(444, 24);
+            menuStrip1.Padding = new Padding(7, 3, 0, 3);
+            menuStrip1.Size = new Size(628, 30);
             menuStrip1.TabIndex = 14;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -206,45 +223,59 @@
             // 
             fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { mnuOptions, mnuExit });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            fileToolStripMenuItem.Size = new Size(37, 20);
+            fileToolStripMenuItem.Size = new Size(46, 24);
             fileToolStripMenuItem.Text = "File";
             // 
             // mnuOptions
             // 
             mnuOptions.DropDownItems.AddRange(new ToolStripItem[] { mnuAddSendTo, mnuRemoveSendTo });
             mnuOptions.Name = "mnuOptions";
-            mnuOptions.Size = new Size(180, 22);
+            mnuOptions.Size = new Size(144, 26);
             mnuOptions.Text = "Options";
             // 
             // mnuAddSendTo
             // 
             mnuAddSendTo.Name = "mnuAddSendTo";
-            mnuAddSendTo.Size = new Size(190, 22);
+            mnuAddSendTo.Size = new Size(239, 26);
             mnuAddSendTo.Text = "Add to Send To";
             mnuAddSendTo.Click += mnuAddSendTo_Click;
             // 
             // mnuRemoveSendTo
             // 
             mnuRemoveSendTo.Name = "mnuRemoveSendTo";
-            mnuRemoveSendTo.Size = new Size(190, 22);
+            mnuRemoveSendTo.Size = new Size(239, 26);
             mnuRemoveSendTo.Text = "Remove from Send To";
             mnuRemoveSendTo.Click += mnuRemoveSendTo_Click;
             // 
             // mnuExit
             // 
             mnuExit.Name = "mnuExit";
-            mnuExit.Size = new Size(180, 22);
+            mnuExit.Size = new Size(144, 26);
             mnuExit.Text = "Exit";
             mnuExit.Click += exitToolStripMenuItem_Click;
+            // 
+            // btnEditTemplate
+            // 
+            btnEditTemplate.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEditTemplate.DialogResult = DialogResult.OK;
+            btnEditTemplate.Location = new Point(397, 425);
+            btnEditTemplate.Margin = new Padding(3, 4, 3, 4);
+            btnEditTemplate.Name = "btnEditTemplate";
+            btnEditTemplate.Size = new Size(127, 31);
+            btnEditTemplate.TabIndex = 15;
+            btnEditTemplate.Text = "Edit Template";
+            btnEditTemplate.UseVisualStyleBackColor = true;
+            btnEditTemplate.Click += btnEditTemplate_Click;
             // 
             // frmCreateFolder
             // 
             AcceptButton = btnProcess;
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = btnCancel;
             CausesValidation = false;
-            ClientSize = new Size(444, 321);
+            ClientSize = new Size(628, 470);
+            Controls.Add(btnEditTemplate);
             Controls.Add(cbExitImmediately);
             Controls.Add(splitContainer2);
             Controls.Add(splitContainer1);
@@ -252,7 +283,8 @@
             Controls.Add(btnCancel);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
-            MinimumSize = new Size(350, 200);
+            Margin = new Padding(3, 4, 3, 4);
+            MinimumSize = new Size(397, 251);
             Name = "frmCreateFolder";
             Text = "Folder Templates: Create Folder";
             Load += frmCreateFolder_Load;
@@ -293,5 +325,6 @@
         private ToolStripMenuItem mnuExit;
         private ToolStripMenuItem mnuAddSendTo;
         private ToolStripMenuItem mnuRemoveSendTo;
+        private Button btnEditTemplate;
     }
 }

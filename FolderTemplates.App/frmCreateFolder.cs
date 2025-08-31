@@ -1,25 +1,26 @@
-using System.Collections.Specialized;
-using System.Configuration;
-using System.Diagnostics;
-using FolderTemplates.CommandLine;
 using FolderTemplates.Data;
 using Microsoft.AspNetCore.Components;
 using Newtonsoft.Json;
+using System.Collections.Specialized;
+using System.Configuration;
+using System.Diagnostics;
+using System.Text;
 
 namespace FolderTemplates.App
 {
     public partial class frmCreateFolder : Form
     {
         private readonly NameValueCollection? appSettings;
-        ConsoleCommandLine cmd;
         private readonly string cmdPath;
-        private readonly string shortcutName = "Process with Folder Templates";
+        private readonly string shortcutNameProcess = "Folder Template - Process";
+        private readonly string shortcutNameEdit = "Folder Template - Edit";
+        //private readonly string shortcutNameCreate = "Folder Template - Create";
 
-        public frmCreateFolder(string[] args)
+        public frmCreateFolder(string? sourcePath, string? targetPath)
         {
             InitializeComponent();
 
-            bool sendToExists = Shortcut.SendToShortcutExists(shortcutName);
+            bool sendToExists = Shortcut.SendToShortcutExists(shortcutNameProcess);
             mnuRemoveSendTo.Visible = sendToExists;
             mnuAddSendTo.Visible = !sendToExists;
 
@@ -27,22 +28,10 @@ namespace FolderTemplates.App
             appSettings = ConfigurationManager.AppSettings;
             cmdPath = (appSettings != null && appSettings["cmdPath"] != null) ? appSettings["cmdPath"] ?? defaultCmdPath : defaultCmdPath;
 
-            cmd = new();
-            cmd.RegisterParameter(new CommandLineParameter("sourceFolder", false, "The path of the Template Folder to process"));
-            //cmd.RegisterParameter(new CommandLineParameter("templateFile", false, "The path of the Template Folder Definition file to apply"));
-            cmd.RegisterParameter(new CommandLineParameter("targetFolder", false, "The path of the folder in which to generate the template result"));
-            cmd.Parse(args ?? Array.Empty<string>(), true, "sourceFolder");
+            tbTemplateFolderPath.Text = sourcePath;
+            tbDestinationFolderPath.Text = targetPath;
 
-            if (cmd.ParsedSuccessfully)
-            {
-                // Get the source, target and template paths from supplied parameters
-                string? initialSourcePath = cmd["sourceFolder"].Exists ? cmd["sourceFolder"].Value : "";
-                string? initialTargetPath = cmd["targetFolder"].Exists ? cmd["targetFolder"].Value : "";
-                tbTemplateFolderPath.Text = initialSourcePath;
-                tbDestinationFolderPath.Text = initialTargetPath;
-
-                CreateForm(cmdPath, initialSourcePath, initialTargetPath);
-            }
+            CreateForm(cmdPath, sourcePath, targetPath);
         }
 
         private void CreateForm(string cmdPath, string? sourceFolder, string? targetFolder = null)
@@ -57,7 +46,8 @@ namespace FolderTemplates.App
                         string defaultTargetFolder = Path.GetFullPath(templateInfo.DefaultTargetPath, Path.GetDirectoryName(sourceFolder) ?? "");
                         tbDestinationFolderPath.Text = defaultTargetFolder;
                     }
-                } else
+                }
+                else
                 {
                     tbDestinationFolderPath.Text = targetFolder;
                 }
@@ -234,11 +224,89 @@ namespace FolderTemplates.App
             }));
         }
 
+        private static void Restart()
+        {
+            // Start a new process with the new command line arguments
+            try
+            {
+                // Get the current executable path
+                string executablePath = Application.ExecutablePath;
+
+                // Get raw command line to preserve original quoting
+                string originalCommandLine = Environment.CommandLine;
+
+                // Extract just the arguments portion (remove the executable part)
+                string argsOnly = "";
+                if (originalCommandLine.StartsWith("\""))
+                {
+                    // If executable path was quoted
+                    int secondQuotePos = originalCommandLine.IndexOf('"', 1);
+                    if (secondQuotePos >= 0 && secondQuotePos + 1 < originalCommandLine.Length)
+                    {
+                        argsOnly = originalCommandLine.Substring(secondQuotePos + 1).Trim();
+                    }
+                }
+                else
+                {
+                    // If executable path wasn't quoted
+                    int firstSpacePos = originalCommandLine.IndexOf(' ');
+                    if (firstSpacePos >= 0)
+                    {
+                        argsOnly = originalCommandLine.Substring(firstSpacePos + 1).Trim();
+                    }
+                }
+
+                // Check if -edit is already present
+                bool editFlagExists = false;
+                string[] argParts = argsOnly.Split(' ');
+                foreach (string arg in argParts)
+                {
+                    if (string.Equals(arg, "-edit", StringComparison.OrdinalIgnoreCase))
+                    {
+                        editFlagExists = true;
+                        break;
+                    }
+                }
+
+                // Build the new arguments string
+                string newArgs = argsOnly;
+                if (!editFlagExists)
+                {
+                    newArgs = string.IsNullOrEmpty(argsOnly) ? "-edit" : argsOnly + " -edit";
+                }
+
+                // Create process start info with quoted executable path
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    FileName = executablePath,
+                    Arguments = newArgs,
+                    UseShellExecute = true
+                };
+
+                // Start the new instance
+                Process.Start(startInfo);
+
+                // Exit the current instance
+                Application.Exit();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to restart application: {ex.Message}",
+                               "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
         private void btnProcess_Click(object sender, EventArgs e)
         {
             string sourceFolder = tbTemplateFolderPath.Text;
             string targetFolder = tbDestinationFolderPath.Text;
             ProcessFolder(cmdPath, sourceFolder, GetParameters(), !string.IsNullOrWhiteSpace(targetFolder) ? targetFolder : null);
+        }
+
+        private void btnEditTemplate_Click(object sender, EventArgs e)
+        {
+            Restart();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -294,10 +362,17 @@ namespace FolderTemplates.App
 
         private void mnuAddSendTo_Click(object sender, EventArgs e)
         {
-            bool sendToExists = Shortcut.SendToShortcutExists(shortcutName);
-            if (!sendToExists)
+            bool sendToExistsProcess = Shortcut.SendToShortcutExists(shortcutNameProcess);
+            if (!sendToExistsProcess)
             {
-                Shortcut.CreateSendToShortcut(shortcutName);
+                Shortcut.CreateSendToShortcut(shortcutNameProcess);
+                mnuRemoveSendTo.Visible = true;
+                mnuAddSendTo.Visible = false;
+            }
+            bool sendToExistsEdit = Shortcut.SendToShortcutExists(shortcutNameEdit);
+            if (!sendToExistsEdit)
+            {
+                Shortcut.CreateSendToShortcut(shortcutNameEdit, new string[] { "-edit", "-sourceFolder" });
                 mnuRemoveSendTo.Visible = true;
                 mnuAddSendTo.Visible = false;
             }
@@ -305,9 +380,9 @@ namespace FolderTemplates.App
 
         private void mnuRemoveSendTo_Click(object sender, EventArgs e)
         {
-            if (Shortcut.SendToShortcutExists(shortcutName))
+            if (Shortcut.SendToShortcutExists(shortcutNameProcess))
             {
-                Shortcut.DeleteSendToShortcut(shortcutName);
+                Shortcut.DeleteSendToShortcut(shortcutNameProcess);
                 mnuRemoveSendTo.Visible = false;
                 mnuAddSendTo.Visible = true;
             }

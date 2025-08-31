@@ -1,23 +1,24 @@
 {
   "profiles": {
-    "FolderTemplates.App": {
+    "no parameters": {
       "commandName": "Project"
     },
-    "sourceFolder": {
+    "folder empty_template": {
       "commandName": "Project",
-      "commandLineArgs": "-sourceFolder \"D:\\Folder Templates\\Test Files\\_Basic Template - {projectName} - {projectVersion}\""
+      "commandLineArgs": "\"S:\\oDrive\\Google Drive - Mandela Daze\\Harv's Code Team\\Content\\Projects\\Extension - Folder Templates\\Test\\Folder Templates\\_empty_template_{name}\""
     },
-    "folder & targetFolder": {
+    "sourceFolder livestream": {
       "commandName": "Project",
-      "commandLineArgs": "\"D:\\Folder Templates\\Test Files\\_Basic Template - {projectName} - {projectVersion}\" -targetFolder \"D:\\Folder Templates\\Test Results\""
+      "commandLineArgs": "-sourceFolder \"S:\\oDrive\\Google Drive - Mandela Daze\\Harv's Code Team\\Content\\Projects\\Extension - Folder Templates\\Test\\Folder Templates\\_livestream_template#{livestreamNumber} - {recordingDate}\""
     },
-    "folder & defaultFargetPath": {
+    "folder livestream & targetFolder": {
       "commandName": "Project",
-      "commandLineArgs": "\"D:\\Folder Templates\\Test Files\\Templates\\TM1\\_template_bedrock {tm1ServerName}\""
+      "commandLineArgs": "\"S:\\oDrive\\Google Drive - Mandela Daze\\Harv's Code Team\\Content\\Projects\\Extension - Folder Templates\\Test\\Folder Templates\\_livestream_template#{livestreamNumber} - {recordingDate}\" -targetFolder \"S:\\oDrive\\Google Drive - Mandela Daze\\Harv's Code Team\\Content\\Projects\\Extension - Folder Templates\\Test\\Results\""
     },
-    "folder & target & default": {
+    "edit sourceFolder livestream": {
       "commandName": "Project",
-      "commandLineArgs": "\"D:\\Folder Templates\\Test Files\\Templates\\TM1\\_template_bedrock {tm1ServerName}\" -targetFolder \"D:\\Folder Templates\""
+      "commandLineArgs": "-sourceFolder \"S:\\oDrive\\Google Drive - Mandela Daze\\Harv's Code Team\\Content\\Projects\\Extension - Folder Templates\\Test\\Folder Templates\\_livestream_template#{livestreamNumber} - {recordingDate}\" -edit",
+      "nativeDebugging": true
     }
   }
 }
