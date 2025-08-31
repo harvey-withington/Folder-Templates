@@ -14,6 +14,11 @@
     "folder livestream & targetFolder": {
       "commandName": "Project",
       "commandLineArgs": "\"S:\\oDrive\\Google Drive - Mandela Daze\\Harv's Code Team\\Content\\Projects\\Extension - Folder Templates\\Test\\Folder Templates\\_livestream_template#{livestreamNumber} - {recordingDate}\" -targetFolder \"S:\\oDrive\\Google Drive - Mandela Daze\\Harv's Code Team\\Content\\Projects\\Extension - Folder Templates\\Test\\Results\""
+    },
+    "edit sourceFolder livestream": {
+      "commandName": "Project",
+      "commandLineArgs": "-sourceFolder \"S:\\oDrive\\Google Drive - Mandela Daze\\Harv's Code Team\\Content\\Projects\\Extension - Folder Templates\\Test\\Folder Templates\\_livestream_template#{livestreamNumber} - {recordingDate}\" -edit",
+      "nativeDebugging": true
     }
   }
 }

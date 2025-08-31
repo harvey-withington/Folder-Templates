@@ -16,6 +16,26 @@ namespace FolderTemplates.App
         {
             InitializeComponent();
             _sourceFolderPath = sourceFolderPath;
+            // if the _sourceFolderPath already has a .ft folder, 
+            // load it into the editor so the user can edit it.
+
+            // Create the .ft folder in the source directory if it doesn't exist
+            string ftFolderPath = Path.Combine(_sourceFolderPath, ".ft");
+            if (Directory.Exists(ftFolderPath))
+            {
+                // Load the template configuration from the .ft folder
+                string templateConfigPath = Path.Combine(ftFolderPath, "template.json");
+                if (File.Exists(templateConfigPath))
+                {
+                    string templateJson = File.ReadAllText(templateConfigPath);
+                    var templateConfig = System.Text.Json.JsonSerializer.Deserialize<TemplateConfig>(templateJson, new System.Text.Json.JsonSerializerOptions { WriteIndented = true, PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+                    txtTemplateName.Text = templateConfig?.Name ?? string.Empty;
+                    txtTemplateDescription.Text = templateConfig?.Description ?? string.Empty;
+                    txtDefaultTargetPath.Text = templateConfig?.DefaultTargetPath ?? string.Empty;
+                    parameters = templateConfig?.Parameters ?? new List<TemplateParameter>();
+                    RefreshParametersGrid();
+                }
+            }
         }
 
         private void RefreshParametersGrid()
@@ -31,8 +51,7 @@ namespace FolderTemplates.App
             return new List<TemplateParameter>(parameters);
         }
 
-        private static bool CreateTemplate(string sourceFolderPath, string templateName, string? templateDescription,
-                                     string? templateDefaultTargetPath, List<TemplateParameter> parameters)
+        private static bool CreateTemplate(string sourceFolderPath, string templateName, string? templateDescription, string? templateDefaultTargetPath, List<TemplateParameter> parameters)
         {
             try
             {
@@ -54,13 +73,11 @@ namespace FolderTemplates.App
                 }
 
                 // Create template configuration
-                var templateConfig = new
-                {
-                    Name = templateName,
-                    Description = templateDescription,
-                    DefaultTargetPath = templateDefaultTargetPath,
-                    Parameters = parameters
-                };
+                var templateConfig = new TemplateConfig();
+                templateConfig.Name = templateName;
+                templateConfig.Description = templateDescription;
+                templateConfig.DefaultTargetPath = templateDefaultTargetPath;
+                templateConfig.Parameters = parameters;
 
                 // Serialize the template configuration to JSON
                 string templateJson = System.Text.Json.JsonSerializer.Serialize(templateConfig,

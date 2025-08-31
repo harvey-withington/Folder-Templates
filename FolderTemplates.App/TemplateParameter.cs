@@ -8,7 +8,6 @@ namespace FolderTemplates.App
 {
     public class TemplateParameter
     {
-        
         public string? Name { get; set; }
         public string? Match { get; set; }
         public string? Type { get; set; }
