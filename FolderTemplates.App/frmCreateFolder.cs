@@ -54,6 +54,13 @@ namespace FolderTemplates.App
 
                 List<ParameterInfo> parameters = getParameterInfo(cmdPath, sourceFolder);
                 RenderForm(parameters);
+
+                btnProcess.Enabled = true;
+                btnEditTemplate.Enabled = true;
+            } else
+            {
+                btnProcess.Enabled = false;
+                btnEditTemplate.Enabled = false;
             }
         }
 
@@ -224,7 +231,7 @@ namespace FolderTemplates.App
             }));
         }
 
-        private static void Restart()
+        private static void Restart(string sourceFolder, string targetFolder, string[] args)
         {
             // Start a new process with the new command line arguments
             try
@@ -232,48 +239,16 @@ namespace FolderTemplates.App
                 // Get the current executable path
                 string executablePath = Application.ExecutablePath;
 
-                // Get raw command line to preserve original quoting
-                string originalCommandLine = Environment.CommandLine;
-
-                // Extract just the arguments portion (remove the executable part)
-                string argsOnly = "";
-                if (originalCommandLine.StartsWith("\""))
-                {
-                    // If executable path was quoted
-                    int secondQuotePos = originalCommandLine.IndexOf('"', 1);
-                    if (secondQuotePos >= 0 && secondQuotePos + 1 < originalCommandLine.Length)
-                    {
-                        argsOnly = originalCommandLine.Substring(secondQuotePos + 1).Trim();
-                    }
-                }
-                else
-                {
-                    // If executable path wasn't quoted
-                    int firstSpacePos = originalCommandLine.IndexOf(' ');
-                    if (firstSpacePos >= 0)
-                    {
-                        argsOnly = originalCommandLine.Substring(firstSpacePos + 1).Trim();
-                    }
-                }
-
-                // Check if -edit is already present
-                bool editFlagExists = false;
-                string[] argParts = argsOnly.Split(' ');
-                foreach (string arg in argParts)
-                {
-                    if (string.Equals(arg, "-edit", StringComparison.OrdinalIgnoreCase))
-                    {
-                        editFlagExists = true;
-                        break;
-                    }
-                }
-
                 // Build the new arguments string
-                string newArgs = argsOnly;
-                if (!editFlagExists)
-                {
-                    newArgs = string.IsNullOrEmpty(argsOnly) ? "-edit" : argsOnly + " -edit";
-                }
+                string newArgs = args != null ? string.Join(" ", args) : string.Empty;
+
+                // Add the source folder to the arguments
+                if (!string.IsNullOrEmpty(sourceFolder))
+                    newArgs += " -sourceFolder \"" + sourceFolder + "\"";
+
+                // Add the target folder to the arguments
+                if (!string.IsNullOrEmpty(targetFolder))
+                    newArgs += " -targetFolder \"" + targetFolder + "\"";
 
                 // Create process start info with quoted executable path
                 ProcessStartInfo startInfo = new ProcessStartInfo
@@ -306,7 +281,9 @@ namespace FolderTemplates.App
 
         private void btnEditTemplate_Click(object sender, EventArgs e)
         {
-            Restart();
+            string sourceFolder = tbTemplateFolderPath.Text;
+            string targetFolder = tbDestinationFolderPath.Text;
+            Restart(sourceFolder, targetFolder, new string[] { "-edit" });
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

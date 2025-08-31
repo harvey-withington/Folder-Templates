@@ -19,36 +19,38 @@ namespace FolderTemplates.App
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            if(args == null || args.Length == 0 )
+            if (args != null && args.Length > 0)
             {
-                return;
-            }
+                ConsoleCommandLine cmd = new();
+                cmd.RegisterParameter(new CommandLineParameter("sourceFolder", true, "The path of the Template Folder to process"));
+                cmd.RegisterParameter(new CommandLineParameter("targetFolder", false, "The path of the folder in which to generate the template result"));
+                cmd.RegisterParameter(new CommandLineParameter("edit", false, "Open the template process form, or edit the template file"));
+                cmd.Parse(args ?? Array.Empty<string>(), true, "sourceFolder");
 
-            ConsoleCommandLine cmd = new();
-            cmd.RegisterParameter(new CommandLineParameter("sourceFolder", true, "The path of the Template Folder to process"));
-            cmd.RegisterParameter(new CommandLineParameter("targetFolder", false, "The path of the folder in which to generate the template result"));
-            cmd.RegisterParameter(new CommandLineParameter("edit", false, "Open the template process form, or edit the template file"));
-            cmd.Parse(args ?? Array.Empty<string>(), true, "sourceFolder");
-
-            if (cmd.ParsedSuccessfully)
-            {
-                string sourcePath = (cmd["sourceFolder"].Exists ? cmd["sourceFolder"].Value : "") ?? "";
-                string? targetPath = (cmd["targetFolder"].Exists ? cmd["targetFolder"].Value : null);
-                string ftFolderPath = Path.Combine(sourcePath, ".ft");
-                string templatePath = Path.Combine(ftFolderPath, "template.json");
-
-                if (!Directory.Exists(ftFolderPath) || !File.Exists(templatePath) || cmd["edit"].Exists)
+                if (cmd.ParsedSuccessfully)
                 {
-                    // Template doesn't exist, launch template creation form
-                    Application.Run(new frmCreateTemplate(sourcePath));
-                    return;
-                } else
-                {
-                    Application.Run(new frmCreateFolder(sourcePath, targetPath));
+                    string sourcePath = (cmd["sourceFolder"].Exists ? cmd["sourceFolder"].Value : "") ?? "";
+                    string? targetPath = (cmd["targetFolder"].Exists ? cmd["targetFolder"].Value : null);
+                    string ftFolderPath = Path.Combine(sourcePath, ".ft");
+                    string templatePath = Path.Combine(ftFolderPath, "template.json");
+
+                    if (!Directory.Exists(ftFolderPath) || !File.Exists(templatePath) || cmd["edit"].Exists)
+                    {
+                        // Template doesn't exist, launch template creation form
+                        Application.Run(new frmCreateTemplate(sourcePath));
+                        return;
+                    }
+                    else
+                    {
+                        Application.Run(new frmCreateFolder(sourcePath, targetPath));
+                    }
                 }
             }
+            else
+            {
+                Application.Run(new frmCreateFolder(null, null));
+            }
         }
-
         static void WaitForDebugger()
         {
             if (!Debugger.IsAttached)
