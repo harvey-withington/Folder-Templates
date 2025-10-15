@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCreateFolder));
             tableLayoutPanel1 = new TableLayoutPanel();
             panel1 = new Panel();
             btnCancel = new Button();
@@ -132,7 +133,7 @@
             tbDestinationFolderPath.Name = "tbDestinationFolderPath";
             tbDestinationFolderPath.PlaceholderText = "Click to select destination folder";
             tbDestinationFolderPath.ReadOnly = true;
-            tbDestinationFolderPath.Size = new Size(290, 27);
+            tbDestinationFolderPath.Size = new Size(289, 27);
             tbDestinationFolderPath.TabIndex = 2;
             tbDestinationFolderPath.Click += tbDestinationFolderPath_Click;
             tbDestinationFolderPath.KeyPress += tbDestinationFolderPath_KeyPress;
@@ -282,6 +283,7 @@
             Controls.Add(btnProcess);
             Controls.Add(btnCancel);
             Controls.Add(menuStrip1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             Margin = new Padding(3, 4, 3, 4);
             MinimumSize = new Size(397, 251);

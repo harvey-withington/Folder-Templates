@@ -15,13 +15,19 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_305CB37B2529431CA4966CF803C5BB4B"
+        "MsmKey" = "8:_40DA5B88A3F045E7B48B11D80C86AEC2"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_5509294E4A1348E18F34D677C1AF6C8F"
+        "MsmKey" = "8:_8166C4557A9F45408B2709AAA1BBAEFB"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FB01C0725E2D4E86A711BCF5DB50FC0F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -43,6 +49,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -59,6 +81,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -80,9 +118,9 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_305CB37B2529431CA4966CF803C5BB4B"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_40DA5B88A3F045E7B48B11D80C86AEC2"
             {
-            "SourcePath" = "8:..\\FolderTemplates.App\\bin\\Release\\net7.0-windows\\publish\\win-x64\\FolderTemplates.App.exe"
+            "SourcePath" = "8:..\\FolderTemplates.App\\bin\\Release\\net9.0-windows10.0.26100.0\\publish\\win-x64\\FolderTemplates.App.exe"
             "TargetName" = "8:FolderTemplates.App.exe"
             "Tag" = "8:"
             "Folder" = "8:_9D152C38F6DC46608886BF21FC704E88"
@@ -100,9 +138,29 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5509294E4A1348E18F34D677C1AF6C8F"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8166C4557A9F45408B2709AAA1BBAEFB"
             {
-            "SourcePath" = "8:..\\FolderTemplates.Console\\bin\\Release\\net7.0\\publish\\win-x64\\FolderTemplates.Console.exe"
+            "SourcePath" = "8:..\\..\\..\\Design\\folder-template-icon-v1.ico"
+            "TargetName" = "8:folder-template-icon-v1.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_9D152C38F6DC46608886BF21FC704E88"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FB01C0725E2D4E86A711BCF5DB50FC0F"
+            {
+            "SourcePath" = "8:..\\FolderTemplates.App\\bin\\Release\\net9.0-windows10.0.26100.0\\publish\\win-x64\\FolderTemplates.Console.exe"
             "TargetName" = "8:FolderTemplates.Console.exe"
             "Tag" = "8:"
             "Folder" = "8:_9D152C38F6DC46608886BF21FC704E88"
@@ -297,7 +355,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_0BEC9892FD8A45D4930100E2CEFCBFB0"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_B63B6A90C66F4F9D996882C90E66C354"
             {
             "Name" = "8:Folder Templates"
             "Arguments" = "8:"
@@ -305,10 +363,10 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_305CB37B2529431CA4966CF803C5BB4B"
+            "Target" = "8:_40DA5B88A3F045E7B48B11D80C86AEC2"
             "Folder" = "8:_75E3CB2B83694DE7904ED0132B7D9B0F"
             "WorkingFolder" = "8:_9D152C38F6DC46608886BF21FC704E88"
-            "Icon" = "8:"
+            "Icon" = "8:_8166C4557A9F45408B2709AAA1BBAEFB"
             "Feature" = "8:"
             }
         }

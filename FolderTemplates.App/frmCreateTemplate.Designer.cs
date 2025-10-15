@@ -39,6 +39,7 @@ namespace FolderTemplates.App
         /// </summary>
         private void InitializeComponent()
         {
+            ComponentResourceManager resources = new ComponentResourceManager(typeof(frmCreateTemplate));
             txtTemplateName = new TextBox();
             txtTemplateDescription = new TextBox();
             dgvParameters = new DataGridView();
@@ -191,6 +192,7 @@ namespace FolderTemplates.App
             Controls.Add(btnRemoveParameter);
             Controls.Add(btnSave);
             Controls.Add(btnCancel);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 4, 3, 4);
             MinimumSize = new Size(536, 376);
             Name = "frmCreateTemplate";
