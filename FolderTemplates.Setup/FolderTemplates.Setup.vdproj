@@ -15,19 +15,19 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_66ACB1C3F61A4330A27CBF1DDF507841"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_72B2DD6A6D874A82B9630364616D7BAB"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_8348C04547804241A5126A041D6603C0"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E092B49976394BC29154950107CD8885"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FB9BE3E90EB1439BB9855B5ABF1B4A76"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -132,6 +132,46 @@
             {
             "SourcePath" = "8:..\\..\\..\\Design\\folder-template-icon-v1.ico"
             "TargetName" = "8:folder-template-icon-v1.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_9D152C38F6DC46608886BF21FC704E88"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E092B49976394BC29154950107CD8885"
+            {
+            "SourcePath" = "8:..\\FolderTemplates.App\\bin\\Release\\net9.0-windows10.0.26100.0\\publish\\win-x64\\FolderTemplates.App.exe"
+            "TargetName" = "8:FolderTemplates.App.exe"
+            "Tag" = "8:"
+            "Folder" = "8:_9D152C38F6DC46608886BF21FC704E88"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FB9BE3E90EB1439BB9855B5ABF1B4A76"
+            {
+            "SourcePath" = "8:..\\FolderTemplates.App\\bin\\Release\\net9.0-windows10.0.26100.0\\publish\\win-x64\\FolderTemplates.Console.exe"
+            "TargetName" = "8:FolderTemplates.Console.exe"
             "Tag" = "8:"
             "Folder" = "8:_9D152C38F6DC46608886BF21FC704E88"
             "Condition" = "8:"
@@ -325,7 +365,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_002E92E8D8B0471A972C0016BE6ACDA7"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_E29EBC1A480D484989A3F8CC89BBCAFC"
             {
             "Name" = "8:Folder Templates"
             "Arguments" = "8:"
@@ -333,7 +373,7 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_66ACB1C3F61A4330A27CBF1DDF507841"
+            "Target" = "8:_E092B49976394BC29154950107CD8885"
             "Folder" = "8:_75E3CB2B83694DE7904ED0132B7D9B0F"
             "WorkingFolder" = "8:_9D152C38F6DC46608886BF21FC704E88"
             "Icon" = "8:_8348C04547804241A5126A041D6603C0"
@@ -738,62 +778,6 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_66ACB1C3F61A4330A27CBF1DDF507841"
-            {
-            "SourcePath" = "8:..\\FolderTemplates.App\\obj\\Release\\net9.0-windows10.0.26100.0\\apphost.exe"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_9D152C38F6DC46608886BF21FC704E88"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:PublishItems"
-            "OutputProjectGuid" = "8:{2A4E9092-A22A-44C7-81CA-7D938AB88BDB}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_72B2DD6A6D874A82B9630364616D7BAB"
-            {
-            "SourcePath" = "8:..\\FolderTemplates.Console\\obj\\Release\\net9.0-windows10.0.26100.0\\apphost.exe"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_9D152C38F6DC46608886BF21FC704E88"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:PublishItems"
-            "OutputProjectGuid" = "8:{09CC889E-E6BD-4388-A074-92231EDD6FD9}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
         }
     }
 }
