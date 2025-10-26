@@ -362,3 +362,8 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /FolderTemplates.Console/parameters.json
+/Samples/_NSP-CTN-{episodeNumber}-{episodeDescription}/Projects/01 - Audio Recording - Introduction/NSP-CTN-{episodeNumber}-{episodeDescription}-Introduction.sesx
+/Samples/_NSP-CTN-{episodeNumber}-{episodeDescription}/Projects/02 - Video Edit - Introduction/NSP-CTN-{episodeNumber}-{episodeDescription}-Video-Edit.prproj
+/Samples/_NSP-CTN-{episodeNumber}-{episodeDescription}/Projects/03 - Thumbnail - Introduction/NSP-CTN-{episodeNumber}-{episodeDescription}-Thumbnail.psd
+/Samples/_Something - {projectName} - {projectVersion}/Some other folder/New Microsoft Word Document with a crazy long filename that goes on and on and on and on and on and is really much longer than it really has any right to be.docx
+/Samples/_NSP-CTN-{episodeNumber}-{episodeDescription}/Projects/04 - Audio Recording - Full Discussion/NSP-CTN-{episodeNumber}-{episodeDescription}-Discussion.sesx
